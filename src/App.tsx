@@ -6,7 +6,7 @@ import RiskDetection from "@/components/sections/RiskDetection";
 import InstitutionalFeatures from "@/components/sections/InstitutionalFeatures";
 import Interlude from "@/components/sections/Interlude";
 import DueDiligenceSuite from "@/components/sections/DueDiligenceSuite";
-import RadialCircle from "@/components/sections/RadialCircle";
+import Criterias from "@/components/sections/Criterias";
 import PDFReport from "@/components/sections/PDFReport";
 import PricingSection from "@/components/sections/PricingSection";
 
@@ -21,7 +21,7 @@ function App() {
         <InstitutionalFeatures />
         <Interlude />
         <DueDiligenceSuite />
-        <RadialCircle />
+        <Criterias />
         <PDFReport />
         <PricingSection />
       </main>

@@ -12,14 +12,14 @@ export const TRUST_LOGOS = [
     { icon: "hub", name: "Dune" },
 ];
 
-export const RADIAL_ITEMS = [
-    { pos: "pos-1", icon: "memory", color: "bg-[#8c25f4]/10 text-[#8c25f4]", title: "Tech & Innovation", desc: "Uniqueness of technology compared to existing solutions.", sources: ["GitHub", "Whitepaper"] },
-    { pos: "pos-2", icon: "language", color: "bg-blue-500/10 text-blue-500", title: "Market Potential", desc: "TAM analysis and growth capacity within sector.", sources: ["CoinGecko", "Messari"] },
-    { pos: "pos-3", icon: "percent", color: "bg-emerald-500/10 text-emerald-500", title: "Financial Model", desc: "Revenue models, tokenomics, and sustainability.", sources: ["Tokenomics", "DefiLlama"] },
-    { pos: "pos-4", icon: "lightbulb", color: "bg-amber-500/10 text-amber-500", title: "Problem & Solution", desc: "Validity of the problem and rationality of solution.", sources: ["Pitch Deck", "Competitor Analysis"] },
-    { pos: "pos-5", icon: "hub", color: "bg-indigo-500/10 text-indigo-500", title: "Applicability", desc: "Real-world scenarios and use case breadth.", sources: ["Case Studies", "User Data"] },
-    { pos: "pos-6", icon: "lock", color: "bg-red-500/10 text-red-500", title: "Security & Compliance", desc: "Technical audits, legal regulations, and risk screening.", sources: ["Certik", "KYC/AML"] },
-    { pos: "pos-7", icon: "ads_click", color: "bg-cyan-500/10 text-cyan-500", title: "Market Strategy", desc: "Go-to-market execution and user adoption goals.", sources: ["Roadmap", "Socials"] },
+export const CRITERIA_ITEMS = [
+    { icon: "memory", color: "bg-[#8c25f4]/10 text-[#8c25f4]", title: "Originality & Innovation", desc: "The uniqueness of the technology or approach offered by the project and the level of innovation it brings compared to existing solutions are evaluated." },
+    { icon: "language", color: "bg-blue-500/10 text-blue-500", title: "Market Potential", desc: "The size of the target market, its growth capacity, and the project's potential market share are analyzed." },
+    { icon: "percent", color: "bg-emerald-500/10 text-emerald-500", title: "Financial Model", desc: "The project's revenue models, token economy (tokenomics), and sustainable financial structure are examined." },
+    { icon: "lightbulb", color: "bg-amber-500/10 text-amber-500", title: "Problem & Solution", desc: "The reality of the problem defined by the project and the effectiveness and rationality of the solution it offers are questioned." },
+    { icon: "hub", color: "bg-indigo-500/10 text-indigo-500", title: "Applicability & Use Cases", desc: "The applicability of the presented technology to real-world scenarios and the breadth of its use cases are evaluated." },
+    { icon: "lock", color: "bg-red-500/10 text-red-500", title: "Security & Compliance", desc: "The project's compliance with technical security standards and its level of compliance with legal regulations (along with risk screening) is analyzed." },
+    { icon: "ads_click", color: "bg-cyan-500/10 text-cyan-500", title: "Market Strategy", desc: "The project's market entry plan, competitive strategy, and user adoption goals are examined." },
 ];
 
 export const PRICING_TIERS = [
