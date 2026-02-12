@@ -60,7 +60,10 @@ export default function Criterias() {
                                 className="absolute w-52 -translate-x-1/2 -translate-y-1/2"
                                 style={{ left: `${x}px`, top: `${y}px` }}
                             >
-                                <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-center">
+                                <div
+                                    className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-center animate-float"
+                                    style={{ animationDelay: `${i * 1}s`, animationDuration: `${6 + (i % 3)}s` }}
+                                >
                                     <div className={`w-10 h-10 rounded-lg ${item.color} flex items-center justify-center mx-auto mb-3`}>
                                         <span className="material-symbols-outlined text-xl">{item.icon}</span>
                                     </div>

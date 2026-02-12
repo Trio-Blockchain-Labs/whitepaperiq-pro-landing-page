@@ -42,6 +42,7 @@ body {
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(140, 37, 244, 0.1);
 }
+
 .dark .glass-nav {
   background: rgba(25, 16, 34, 0.85);
   border-bottom: 1px solid rgba(140, 37, 244, 0.2);
@@ -53,6 +54,7 @@ body {
   box-shadow: 0 25px 50px -12px rgba(140, 37, 244, 0.25);
   transition: transform 0.3s ease;
 }
+
 .hero-3d-container:hover {
   transform: perspective(1000px) rotateX(2deg) translateY(-10px);
 }
@@ -64,6 +66,7 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 .dark .gradient-text {
   background: linear-gradient(135deg, #ffffff 0%, #a855f7 100%);
   -webkit-background-clip: text;
@@ -75,24 +78,28 @@ body {
 .grid-bg {
   background-size: 40px 40px;
   background-image: linear-gradient(to right, rgba(140, 37, 244, 0.05) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(140, 37, 244, 0.05) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(140, 37, 244, 0.05) 1px, transparent 1px);
 }
+
 .dark .grid-bg {
   background-image: linear-gradient(to right, rgba(140, 37, 244, 0.1) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(140, 37, 244, 0.1) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(140, 37, 244, 0.1) 1px, transparent 1px);
 }
 
 /* ===== Custom Scrollbar ===== */
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }
+
 .custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
 }
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #cbd5e1;
   border-radius: 20px;
 }
+
 .dark .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #475569;
 }
@@ -106,6 +113,7 @@ body {
   align-items: center;
   justify-content: center;
 }
+
 .central-hub {
   width: 160px;
   height: 160px;
@@ -124,6 +132,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .radial-item {
   position: absolute;
   width: 280px;
@@ -136,24 +145,55 @@ body {
   cursor: pointer;
   z-index: 1;
 }
+
 .dark .radial-item {
   background: #1e293b;
   border-color: rgba(148, 163, 184, 0.1);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
 }
+
 .radial-item:hover {
   z-index: 20;
   transform: scale(1.05);
   box-shadow: 0 20px 40px -12px rgba(140, 37, 244, 0.25);
   border-color: #8c25f4;
 }
-.pos-1 { top: 0; left: 50%; transform: translateX(-50%); }
-.pos-2 { top: 20%; right: 5%; }
-.pos-3 { bottom: 25%; right: 5%; }
-.pos-4 { bottom: 0; right: 20%; }
-.pos-5 { bottom: 0; left: 20%; }
-.pos-6 { bottom: 25%; left: 5%; }
-.pos-7 { top: 20%; left: 5%; }
+
+.pos-1 {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pos-2 {
+  top: 20%;
+  right: 5%;
+}
+
+.pos-3 {
+  bottom: 25%;
+  right: 5%;
+}
+
+.pos-4 {
+  bottom: 0;
+  right: 20%;
+}
+
+.pos-5 {
+  bottom: 0;
+  left: 20%;
+}
+
+.pos-6 {
+  bottom: 25%;
+  left: 5%;
+}
+
+.pos-7 {
+  top: 20%;
+  left: 5%;
+}
 
 .connecting-line {
   position: absolute;
@@ -170,6 +210,7 @@ body {
     gap: 1rem;
     padding-top: 4rem;
   }
+
   .central-hub {
     position: relative;
     margin-bottom: 2rem;
@@ -177,6 +218,7 @@ body {
     left: auto;
     transform: none;
   }
+
   .radial-item {
     position: relative;
     top: auto !important;
@@ -187,6 +229,7 @@ body {
     width: 100%;
     max-width: 500px;
   }
+
   .connecting-line {
     display: none;
   }
@@ -196,11 +239,13 @@ body {
 .pdf-scroll-container {
   perspective: 1500px;
 }
+
 .pdf-document {
   transform: rotateX(5deg) rotateY(-5deg) rotateZ(1deg);
   transition: transform 0.4s ease;
   box-shadow: -20px 30px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
+
 .pdf-document:hover {
   transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(-10px);
   box-shadow: 0 30px 60px rgba(140, 37, 244, 0.2), 0 0 0 1px rgba(140, 37, 244, 0.1);
@@ -213,6 +258,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.6);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
+
 .dark .feature-card-glass {
   background: rgba(30, 41, 59, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -232,6 +278,7 @@ body {
   stroke-dasharray: 4;
   animation: dash 20s linear infinite;
 }
+
 @keyframes dash {
   to {
     stroke-dashoffset: -100;
@@ -242,10 +289,41 @@ body {
 .scroll-icon-anim {
   animation: bounce 2s infinite;
 }
+
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-5px); }
-  60% { transform: translateY(-3px); }
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-5px);
+  }
+
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+/* ===== Floating Animation ===== */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @theme inline {
@@ -363,6 +441,7 @@ body {
     @apply border-border outline-ring/50;
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     @apply bg-background text-foreground;
