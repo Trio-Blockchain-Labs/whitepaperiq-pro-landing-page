@@ -9,12 +9,7 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="col-span-2 md:col-span-1">
                         <div className="flex items-center gap-2 mb-4">
-                            <div className="w-6 h-6 rounded bg-[#8c25f4] flex items-center justify-center text-white">
-                                <span className="material-icons text-sm">layers</span>
-                            </div>
-                            <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white">
-                                Whitepaper IQ
-                            </span>
+                            <img src="/logo.png" alt="Whitepaper IQ" className="h-8 w-auto" />
                         </div>
                         <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
                             The standard for institutional crypto due diligence.

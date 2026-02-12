@@ -17,11 +17,12 @@ export default function Criterias() {
                 {/* Radial layout – desktop */}
                 <div className="hidden lg:block relative w-[720px] h-[720px] mx-auto">
                     {/* Center circle */}
-                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 rounded-full bg-gradient-to-br from-[#8c25f4] to-indigo-600 flex items-center justify-center shadow-xl shadow-[#8c25f4]/30 z-10">
-                        <div className="text-center text-white">
-                            <span className="material-icons text-3xl">hub</span>
-                            <div className="text-xs font-bold mt-1 tracking-wider">IQ SCORE</div>
-                        </div>
+                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full bg-gradient-to-br from-[#8c25f4] to-indigo-600 flex items-center justify-center shadow-xl shadow-[#8c25f4]/30 z-10 p-2">
+                        <img
+                            src="/maskot.png"
+                            alt="IQ Mascot"
+                            className="w-full h-full object-contain drop-shadow-lg"
+                        />
                     </div>
 
                     {/* Connecting lines SVG */}
