@@ -12,12 +12,7 @@ export default function Navbar() {
                 <div className="flex justify-between h-20 items-center">
                     {/* Logo */}
                     <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded bg-[#8c25f4] flex items-center justify-center text-white">
-                            <span className="material-icons text-xl">layers</span>
-                        </div>
-                        <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white">
-                            Whitepaper IQ
-                        </span>
+                        <img src="/logo.png" alt="Whitepaper IQ" className="h-10 w-auto" />
                     </div>
 
                     {/* Desktop Nav */}

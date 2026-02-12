@@ -3,7 +3,7 @@ import HeroBackground from "@/components/three/HeroBackground";
 
 export default function HeroSection() {
     return (
-        <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden grid-bg">
+        <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
             {/* Three.js particle network */}
             <HeroBackground />
 
@@ -17,11 +17,7 @@ export default function HeroSection() {
                 </div>
 
                 {/* Heading */}
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-6 text-slate-900 dark:text-white">
-                    Institutional-Grade <br />
-                    <span className="gradient-text">Crypto Due Diligence.</span> <br />
-                    Automized.
-                </h1>
+                <img src="/logo.png" alt="Whitepaper IQ" className="mx-auto mb-6 max-w-md md:max-w-lg lg:max-w-xl w-full h-auto" />
 
                 <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-500 dark:text-slate-400">
                     AI-driven risk analysis for funds, VCs, and exchanges. Detect fraud, wash trading, and
