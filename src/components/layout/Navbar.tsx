@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import StarBorder from "@/components/ui/star-border";
 import { NAV_LINKS } from "@/data/constants";
 
 export default function Navbar() {
@@ -11,25 +12,30 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-20 items-center">
                     {/* Logo */}
-                    <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded bg-[#8c25f4] flex items-center justify-center text-white">
-                            <span className="material-icons text-xl">layers</span>
-                        </div>
-                        <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white">
-                            Whitepaper IQ
-                        </span>
-                    </div>
+                    <a href="#" className="flex items-center">
+                        <img
+                            src="/logo.png"
+                            alt="Whitepaper IQ"
+                            className="h-8 w-auto"
+                        />
+                    </a>
 
                     {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center space-x-8">
+                    <div className="hidden md:flex items-center space-x-3">
                         {NAV_LINKS.map((link) => (
-                            <a
+                            <StarBorder
                                 key={link.href}
-                                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-[#8c25f4] transition-colors"
+                                as="a"
                                 href={link.href}
+                                className="no-underline"
+                                color="#8c25f4"
+                                speed="5s"
+                                thickness={1}
                             >
-                                {link.label}
-                            </a>
+                                <span className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-[#8c25f4] transition-colors">
+                                    {link.label}
+                                </span>
+                            </StarBorder>
                         ))}
                     </div>
 

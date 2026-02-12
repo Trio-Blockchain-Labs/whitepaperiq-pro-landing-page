@@ -1,4 +1,36 @@
-import { TRUST_LOGOS } from "@/data/constants";
+import LogoLoop from "@/components/ui/LogoLoop";
+import type { LogoItem } from "@/components/ui/LogoLoop";
+
+const trustLogos: LogoItem[] = [
+    {
+        node: <span className="material-icons text-4xl text-slate-600 dark:text-slate-300">diamond</span>,
+        title: "Arkham",
+    },
+    {
+        node: <span className="material-icons text-4xl text-slate-600 dark:text-slate-300">incomplete_circle</span>,
+        title: "CoinGecko",
+    },
+    {
+        node: <span className="material-icons text-4xl text-slate-600 dark:text-slate-300">hub</span>,
+        title: "Dune",
+    },
+    {
+        node: <span className="material-icons text-4xl text-slate-600 dark:text-slate-300">token</span>,
+        title: "Chainlink",
+    },
+    {
+        node: <span className="material-icons text-4xl text-slate-600 dark:text-slate-300">analytics</span>,
+        title: "Messari",
+    },
+    {
+        node: <span className="material-icons text-4xl text-slate-600 dark:text-slate-300">security</span>,
+        title: "CertiK",
+    },
+    {
+        node: <span className="material-icons text-4xl text-slate-600 dark:text-slate-300">insights</span>,
+        title: "Glassnode",
+    },
+];
 
 export default function TrustLogos() {
     return (
@@ -7,13 +39,19 @@ export default function TrustLogos() {
                 <p className="text-center text-sm font-semibold text-slate-400 mb-6 uppercase tracking-widest">
                     Powered by Intelligence From
                 </p>
-                <div className="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale">
-                    {TRUST_LOGOS.map((logo) => (
-                        <div key={logo.name} className="flex items-center gap-2">
-                            <span className="material-icons text-2xl">{logo.icon}</span>
-                            <span className="font-bold text-xl font-display">{logo.name}</span>
-                        </div>
-                    ))}
+                <div className="relative overflow-hidden" style={{ height: 80 }}>
+                    <LogoLoop
+                        logos={trustLogos}
+                        speed={80}
+                        direction="left"
+                        logoHeight={40}
+                        gap={60}
+                        hoverSpeed={0}
+                        scaleOnHover
+                        fadeOut
+                        fadeOutColor="var(--trust-fade, #ffffff)"
+                        ariaLabel="Technology partners"
+                    />
                 </div>
             </div>
         </section>
