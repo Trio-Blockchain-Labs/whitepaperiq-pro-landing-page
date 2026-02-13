@@ -2,7 +2,7 @@ import { CRITERIA_ITEMS } from "@/data/constants";
 
 export default function Criterias() {
     return (
-        <section className="py-24 bg-white dark:bg-slate-950 relative overflow-hidden">
+        <section id="how-it-works" className="py-24 bg-white dark:bg-slate-950 relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-16">
