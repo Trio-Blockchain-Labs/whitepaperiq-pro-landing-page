@@ -15,7 +15,7 @@ export default function DueDiligenceSuite() {
                 {/* 4-column grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {/* ── 1. Top Holders ── */}
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl transition-all duration-300 group">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl hover:border-purple-300/70 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] group">
                         <div className="w-10 h-10 bg-purple-50 dark:bg-slate-700 rounded-lg flex items-center justify-center mb-4 text-purple-600 dark:text-purple-400">
                             <span className="material-symbols-outlined text-2xl">group_work</span>
                         </div>
@@ -38,7 +38,7 @@ export default function DueDiligenceSuite() {
                     </div>
 
                     {/* ── 2. Exchange Tracking ── */}
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl transition-all duration-300 group">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl hover:border-purple-300/70 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] group">
                         <div className="w-10 h-10 bg-blue-50 dark:bg-slate-700 rounded-lg flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400">
                             <span className="material-symbols-outlined text-2xl">bar_chart</span>
                         </div>
@@ -64,7 +64,7 @@ export default function DueDiligenceSuite() {
                     </div>
 
                     {/* ── 3. Institutional Holdings ── */}
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl transition-all duration-300 group">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl hover:border-purple-300/70 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] group">
                         <div className="w-10 h-10 bg-emerald-50 dark:bg-slate-700 rounded-lg flex items-center justify-center mb-4 text-emerald-600 dark:text-emerald-400">
                             <span className="material-symbols-outlined text-2xl">assured_workload</span>
                         </div>
@@ -91,7 +91,7 @@ export default function DueDiligenceSuite() {
                     </div>
 
                     {/* ── 4. Social & Dev Metrics ── */}
-                    <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl transition-all duration-300 group">
+                    <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl hover:border-purple-300/70 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] group">
                         <div className="w-10 h-10 bg-cyan-50 dark:bg-slate-700 rounded-lg flex items-center justify-center mb-4 text-cyan-500">
                             <span className="material-symbols-outlined text-2xl">hub</span>
                         </div>
@@ -127,7 +127,7 @@ export default function DueDiligenceSuite() {
                     </div>
 
                     {/* ── 5. Smart Money Flows ── */}
-                    <div className="lg:col-span-1 bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl transition-all duration-300 group flex flex-col justify-between">
+                    <div className="lg:col-span-1 bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl hover:border-purple-300/70 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] group flex flex-col justify-between">
                         <div>
                             <div className="w-10 h-10 bg-indigo-50 dark:bg-slate-700 rounded-lg flex items-center justify-center mb-4 text-indigo-500">
                                 <span className="material-symbols-outlined text-2xl">waves</span>
@@ -152,7 +152,7 @@ export default function DueDiligenceSuite() {
                     </div>
 
                     {/* ── 6. Treasury Runway ── */}
-                    <div className="lg:col-span-1 bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl transition-all duration-300 group flex flex-col justify-between">
+                    <div className="lg:col-span-1 bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl hover:border-purple-300/70 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] group flex flex-col justify-between">
                         <div>
                             <div className="w-10 h-10 bg-orange-50 dark:bg-slate-700 rounded-lg flex items-center justify-center mb-4 text-orange-500">
                                 <span className="material-symbols-outlined text-2xl">account_balance_wallet</span>
@@ -187,7 +187,7 @@ export default function DueDiligenceSuite() {
                     </div>
 
                     {/* ── 7. Proof of Reserves ── */}
-                    <div className="lg:col-span-1 bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl transition-all duration-300 group flex flex-col justify-between">
+                    <div className="lg:col-span-1 bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl hover:border-purple-300/70 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] group flex flex-col justify-between">
                         <div className="flex justify-between items-start">
                             <div>
                                 <div className="w-10 h-10 bg-teal-50 dark:bg-slate-700 rounded-lg flex items-center justify-center mb-4 text-teal-500">
@@ -212,24 +212,24 @@ export default function DueDiligenceSuite() {
                     </div>
 
                     {/* ── 8. Price History Insights ── */}
-                    <div className="lg:col-span-1 bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl transition-all duration-300 group flex flex-col justify-between">
-                        <div className="flex justify-between items-start">
-                            <div>
-                                <div className="w-10 h-10 bg-pink-50 dark:bg-slate-700 rounded-lg flex items-center justify-center mb-4 text-pink-500">
-                                    <span className="material-symbols-outlined text-2xl">ssid_chart</span>
-                                </div>
-                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Price History Insights</h3>
-                                <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 leading-relaxed max-w-sm">
-                                    Deep analysis of historical volatility and drawdown periods correlated with major market events.
-                                </p>
+                    <div className="lg:col-span-1 bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl shadow-purple-500/5 hover:shadow-2xl hover:border-purple-300/70 transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] group flex flex-col justify-between">
+                        <div className="flex items-start justify-between gap-3 mb-3">
+                            <div className="w-10 h-10 bg-pink-50 dark:bg-slate-700 rounded-lg flex items-center justify-center text-pink-500">
+                                <span className="material-symbols-outlined text-2xl">ssid_chart</span>
                             </div>
-                            <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-lg px-3 py-2 text-center shadow-sm">
-                                <div className="text-[10px] text-slate-400 uppercase tracking-wide mb-0.5">Volatility Index</div>
-                                <div className="text-xl font-bold text-slate-900 dark:text-white flex items-baseline justify-center gap-1">
-                                    42.5 <span className="text-xs font-normal text-red-500">High</span>
+                            <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-700 rounded-lg px-2.5  pb-0 text-center shadow-sm w-auto min-w-[120px]">
+                                <div className="text-[9px] text-slate-400 uppercase tracking-wide mb-0.5">Volatility Index</div>
+                                <div className="text-base font-bold text-slate-900 dark:text-white flex items-baseline justify-center gap-1">
+                                    42.5 <span className="text-[10px] font-normal text-red-500">High</span>
                                 </div>
                             </div>
                         </div>
+                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                            Price History Insights
+                        </h3>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
+                            Deep analysis of historical volatility and drawdown periods correlated with major market events.
+                        </p>
                         <div className="w-full bg-slate-50 dark:bg-slate-900 rounded-lg h-24 relative overflow-hidden border border-slate-100 dark:border-slate-700 mt-4">
                             <div className="absolute top-2 right-2 flex gap-2 text-[10px] text-slate-400 font-medium">
                                 <span>30D Trend</span>

@@ -12,7 +12,7 @@ export default function Navbar() {
                 <div className="flex justify-between h-20 items-center">
                     {/* Logo */}
                     <div className="flex items-center gap-2">
-                        <img src="/logo.png" alt="Whitepaper IQ" className="h-10 w-auto" />
+                        <img src="/logo.png" alt="Whitepaper IQ" className="h-8 w-auto" />
                     </div>
 
                     {/* Desktop Nav */}
@@ -32,7 +32,7 @@ export default function Navbar() {
                     <div className="hidden md:flex items-center space-x-4">
                         <a
                             className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-[#8c25f4] transition-colors"
-                            href="#"
+                            href="https://whitepaperiq.com/login"
                         >
                             Login
                         </a>
@@ -64,7 +64,7 @@ export default function Navbar() {
                                     <hr className="border-slate-200 dark:border-slate-700" />
                                     <a
                                         className="text-lg font-medium text-slate-600 dark:text-slate-300 hover:text-[#8c25f4]"
-                                        href="#"
+                                        href="https://whitepaperiq.com/login"
                                     >
                                         Login
                                     </a>

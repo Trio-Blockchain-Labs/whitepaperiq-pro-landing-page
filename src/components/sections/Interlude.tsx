@@ -20,18 +20,20 @@ export default function Interlude() {
             </div>
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 pointer-events-none">
-                <div className="inline-flex items-center gap-2 mb-6 text-[#8c25f4]">
-                    <span className="h-px w-8 bg-[#8c25f4]/50" />
-                    <span className="material-icons text-sm">auto_awesome</span>
-                    <span className="h-px w-8 bg-[#8c25f4]/50" />
+                <div className="inline-block bg-white/85 dark:bg-slate-950/85 rounded-2xl px-8 py-6 border border-slate-200/70 dark:border-slate-800/80 shadow-xl backdrop-blur-md pointer-events-auto">
+                    <div className="inline-flex items-center gap-2 mb-4 text-[#8c25f4]">
+                        <span className="h-px w-8 bg-[#8c25f4]/60" />
+                        <span className="material-icons text-sm">auto_awesome</span>
+                        <span className="h-px w-8 bg-[#8c25f4]/60" />
+                    </div>
+                    <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight mb-4">
+                        Autonomous Intelligence. <br />
+                        <span className="gradient-text">Institutional Depth.</span>
+                    </h2>
+                    <p className="mt-2 text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-medium">
+                        Eight integrated modules working together to give you the most comprehensive due diligence on any token.
+                    </p>
                 </div>
-                <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight mb-6">
-                    Autonomous Intelligence. <br />
-                    <span className="gradient-text">Institutional Depth.</span>
-                </h2>
-                <p className="mt-4 text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-medium">
-                    Eight integrated modules working together to give you the most comprehensive due diligence on any token.
-                </p>
             </div>
         </section>
     );

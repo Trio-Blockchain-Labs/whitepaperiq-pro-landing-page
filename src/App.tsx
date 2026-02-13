@@ -18,11 +18,11 @@ function App() {
         <HeroSection />
         <TrustLogos />
         <RiskDetection />
-        <InstitutionalFeatures />
         <Interlude />
         <DueDiligenceSuite />
         <Criterias />
         <PDFReport />
+        <InstitutionalFeatures />
         <PricingSection />
       </main>
       <Footer />

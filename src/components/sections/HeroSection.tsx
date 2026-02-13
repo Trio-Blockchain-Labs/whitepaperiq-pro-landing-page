@@ -1,7 +1,43 @@
+ "use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import HeroBackground from "@/components/three/HeroBackground";
+import { CRITERIA_ITEMS } from "@/data/constants";
 
 export default function HeroSection() {
+    const [activeTab, setActiveTab] = useState<"summary" | "financial">("summary");
+    const riskBadges: Record<string, { label: string; className: string }> = {
+        "Originality & Innovation": {
+            label: "STRONG",
+            className: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400",
+        },
+        "Market Potential": {
+            label: "MATURE",
+            className: "bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400",
+        },
+        "Financial Model": {
+            label: "STABLE",
+            className: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400",
+        },
+        "Problem & Solution": {
+            label: "CLEAR",
+            className: "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300",
+        },
+        "Applicability & Use Cases": {
+            label: "BROAD",
+            className: "bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400",
+        },
+        "Security & Compliance": {
+            label: "HIGH",
+            className: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400",
+        },
+        "Market Strategy": {
+            label: "ORGANIC",
+            className: "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400",
+        },
+    };
+
     return (
         <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
             {/* Three.js particle network */}
@@ -93,7 +129,7 @@ export default function HeroSection() {
                                         { label: "24h Volume", value: "$80.5B" },
                                         { label: "Market Cap", value: "$1.68T" },
                                         { label: "FDV", value: "$1.68T" },
-                                        { label: "Current Supply", value: "20.0M" },
+                                        { label: "Current Supply", value: "21.0M" },
                                     ].map((stat) => (
                                         <div key={stat.label}>
                                             <div className="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wide mb-1">
@@ -105,26 +141,54 @@ export default function HeroSection() {
                                 </div>
                             </div>
 
-                            {/* Summary Card */}
+                            {/* Summary / Financial Card */}
                             <div className="bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 p-6 mb-6 shadow-sm">
                                 <div className="flex justify-between items-center mb-4">
-                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">Summary</h3>
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                                        {activeTab === "summary" ? "Summary" : "Financial Overview"}
+                                    </h3>
                                     <div className="flex gap-2">
-                                        <button className="px-3 py-1 bg-[#8c25f4]/10 text-[#8c25f4] text-xs font-medium rounded-full">
+                                        <button
+                                            className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
+                                                activeTab === "summary"
+                                                    ? "bg-[#8c25f4]/10 text-[#8c25f4]"
+                                                    : "bg-slate-100 dark:bg-slate-800 text-slate-500"
+                                            }`}
+                                            onClick={() => setActiveTab("summary")}
+                                        >
                                             Summary
                                         </button>
-                                        <button className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 text-xs font-medium rounded-full">
+                                        <button
+                                            className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
+                                                activeTab === "financial"
+                                                    ? "bg-[#8c25f4]/10 text-[#8c25f4]"
+                                                    : "bg-slate-100 dark:bg-slate-800 text-slate-500"
+                                            }`}
+                                            onClick={() => setActiveTab("financial")}
+                                        >
                                             Financial
                                         </button>
                                     </div>
                                 </div>
-                                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                                    Bitcoin maintains its position as the dominant cryptocurrency with a $1.68T market cap, but
-                                    faces several concerning indicators. The asset is trading 33.4% below its recent ATH of $126K,
-                                    showing significant price pressure. While institutional adoption through corporate treasuries
-                                    ($95.8B) and government holdings ($52B) demonstrates growing legitimacy, the concentration of
-                                    15.1% of supply among top holders creates centralization risks.
-                                </p>
+                                {activeTab === "summary" ? (
+                                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                        Bitcoin maintains its position as the dominant cryptocurrency with a $1.68T market cap, but
+                                        faces several concerning indicators. The asset is trading 33.4% below its recent ATH of
+                                        $126K, showing significant price pressure. While institutional adoption through corporate
+                                        treasuries ($95.8B) and government holdings ($52B) demonstrates growing legitimacy, the
+                                        concentration of 15.1% of supply among top holders creates centralization risks.
+                                    </p>
+                                ) : (
+                                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                        Revenue drivers for BTC remain primarily speculative and macro-liquidity driven rather than
+                                        cashflow-based fundamentals. On-chain fee revenue covers only a fraction of miner issuance,
+                                        leaving the network reliant on block rewards and sustained demand. Funding rates and
+                                        perpetual open interest show periods of leveraged buildup, increasing liquidation risk in
+                                        sharp drawdowns. Overall, BTC exhibits a resilient balance sheet and deep liquidity, but
+                                        income-style yield characteristics remain weak compared to traditional fixed-income or
+                                        real-yield assets.
+                                    </p>
+                                )}
                             </div>
 
                             {/* 3 Column Grid */}
@@ -218,30 +282,32 @@ export default function HeroSection() {
                                         7 Criteria Risk Assessment
                                     </div>
                                     <div className="flex-1 overflow-y-auto pr-1 custom-scrollbar max-h-[220px]">
-                                        <div className="mb-4">
-                                            <div className="flex justify-between items-center mb-1">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="w-5 h-5 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-xs font-bold text-slate-600">1</span>
-                                                    <span className="font-bold text-slate-800 dark:text-slate-200 text-sm">Tech &amp; Innovation</span>
+                                        {CRITERIA_ITEMS.map((item, index) => {
+                                            const badge = riskBadges[item.title] ?? {
+                                                label: "INFO",
+                                                className: "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300",
+                                            };
+                                            return (
+                                                <div key={item.title} className="mb-4 last:mb-0">
+                                                    <div className="flex justify-between items-center mb-1">
+                                                        <div className="flex items-center gap-2">
+                                                            <span className="w-5 h-5 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[10px] font-bold text-slate-600">
+                                                                {index + 1}
+                                                            </span>
+                                                            <span className="font-bold text-slate-800 dark:text-slate-200 text-sm">
+                                                                {item.title}
+                                                            </span>
+                                                        </div>
+                                                        <span className={`${badge.className} text-[10px] font-bold px-2 py-0.5 rounded`}>
+                                                            {badge.label}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-xs text-slate-500 leading-relaxed pl-7">
+                                                        {item.desc}
+                                                    </p>
                                                 </div>
-                                                <span className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded">GOOD</span>
-                                            </div>
-                                            <p className="text-xs text-slate-500 leading-relaxed pl-7">
-                                                Bitcoin represents the foundational blockchain technology with SHA-256 Proof of Work consensus achieving unparalleled security and decentralization.
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <div className="flex justify-between items-center mb-1">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="w-5 h-5 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-xs font-bold text-slate-600">2</span>
-                                                    <span className="font-bold text-slate-800 dark:text-slate-200 text-sm">Market Health</span>
-                                                </div>
-                                                <span className="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded">CAUTION</span>
-                                            </div>
-                                            <p className="text-xs text-slate-500 leading-relaxed pl-7">
-                                                Significant drawdown from ATH suggests market cycle pressure. Volatility remains high relative to traditional assets.
-                                            </p>
-                                        </div>
+                                            );
+                                        })}
                                     </div>
                                 </div>
                             </div>
