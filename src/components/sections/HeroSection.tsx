@@ -3,25 +3,26 @@ import HeroBackground from "@/components/three/HeroBackground";
 
 export default function HeroSection() {
     return (
-        <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden grid-bg">
+        <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
             {/* Three.js particle network */}
             <HeroBackground />
 
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[#8c25f4]/10 blur-[120px] rounded-full pointer-events-none -z-10" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8c25f4]/10 border border-[#8c25f4]/20 text-[#8c25f4] text-xs font-semibold uppercase tracking-wider mb-6">
-                    <span className="w-2 h-2 rounded-full bg-[#8c25f4] animate-pulse" />
-                    v2.0 Now Live
-                </div>
+
 
                 {/* Heading */}
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-6 text-slate-900 dark:text-white">
-                    Institutional-Grade <br />
-                    <span className="gradient-text">Crypto Due Diligence.</span> <br />
-                    Automized.
-                </h1>
+                <img src="/logo.png" alt="Whitepaper IQ" className="mx-auto mb-2 max-w-md md:max-w-lg lg:max-w-xl w-full h-auto" />
+
+                <a
+                    href="https://trioblockchainlabs.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block mx-auto mb-8 text-sm font-medium italic tracking-[0.2em] text-slate-400 dark:text-slate-500 hover:text-[#8c25f4] transition-colors"
+                >
+                    Powered by TriO Blockchain Labs
+                </a>
 
                 <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-500 dark:text-slate-400">
                     AI-driven risk analysis for funds, VCs, and exchanges. Detect fraud, wash trading, and
@@ -33,13 +34,17 @@ export default function HeroSection() {
                     <Button className="group relative px-8 py-3.5 rounded-lg bg-gradient-to-r from-violet-500 to-pink-500 text-white font-semibold shadow-xl shadow-[#8c25f4]/25 hover:shadow-[#8c25f4]/40 hover:-translate-y-0.5 transition-all duration-200 overflow-hidden h-auto">
                         <div className="absolute inset-0 w-full h-full bg-white/20 group-hover:bg-white/10 transition-colors" />
                         <span className="relative flex items-center gap-2">
-                            Start Free Analysis
-                            <span className="material-icons text-sm">arrow_forward</span>
+                            Explore
+                            <span className="material-icons text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
                         </span>
                     </Button>
+
                     <Button
                         variant="outline"
-                        className="px-8 py-3.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all duration-200 h-auto"
+                        className="px-8 py-3.5 rounded-lg border-2 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-all h-auto"
+                        onClick={() => {
+                            document.getElementById('pdf-report-section')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
                     >
                         View Sample Report
                     </Button>
