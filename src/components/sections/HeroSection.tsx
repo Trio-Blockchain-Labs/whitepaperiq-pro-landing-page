@@ -175,21 +175,11 @@ export default function HeroSection() {
                                 </div>
                                 {activeTab === "summary" ? (
                                     <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                                        Bitcoin maintains its position as the dominant cryptocurrency with a $1.68T market cap, but
-                                        faces several concerning indicators. The asset is trading 33.4% below its recent ATH of
-                                        $126K, showing significant price pressure. While institutional adoption through corporate
-                                        treasuries ($95.8B) and government holdings ($52B) demonstrates growing legitimacy, the
-                                        concentration of 15.1% of supply among top holders creates centralization risks.
+                                        Bitcoin maintains its position as the dominant cryptocurrency with a $1.68T market cap, but faces several concerning indicators. The asset is trading 33.4% below its recent ATH of $126K, showing significant price pressure. While institutional adoption through corporate treasuries ($95.8B) and government holdings ($52B) demonstrates growing legitimacy, the concentration of 15.1% of supply among top holders creates centralization risks. Exchange dominance by major CEXs like Binance and government holdings including hacker-controlled funds raise security concerns. The project shows strong development activity with 108 commits in 4 weeks and 846 contributors, indicating robust ongoing development. However, the lack of inflow/outflow data limits visibility into current market dynamics. Overall, Bitcoin remains fundamentally strong but faces near-term headwinds from price volatility and concentration risks.
                                     </p>
                                 ) : (
                                     <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                                        Revenue drivers for BTC remain primarily speculative and macro-liquidity driven rather than
-                                        cashflow-based fundamentals. On-chain fee revenue covers only a fraction of miner issuance,
-                                        leaving the network reliant on block rewards and sustained demand. Funding rates and
-                                        perpetual open interest show periods of leveraged buildup, increasing liquidation risk in
-                                        sharp drawdowns. Overall, BTC exhibits a resilient balance sheet and deep liquidity, but
-                                        income-style yield characteristics remain weak compared to traditional fixed-income or
-                                        real-yield assets.
+                                        Bitcoin's financial metrics show mixed signals with concerning price action but strong fundamental positioning. Currently trading at $83,919, the asset is 33.4% below its recent ATH of $126,080, indicating significant correction pressure. However, the 123,657% gain from ATL of $67.81 demonstrates long-term value creation. Market cap of $1.68T with FDV ratio of 1.0 indicates no inflation risk, as Bitcoin's fixed 21M supply cap eliminates future dilution concerns. Short-term trends show weakness: -0.67% (24h), -5.96% (7d), -12.13% (14d), but longer-term performance remains challenged with -20.1% (1y). The $80.5B daily volume represents healthy liquidity at 4.8% of market cap. With 19.98M of 21M coins already mined, Bitcoin approaches full circulation, supporting scarcity value proposition despite current price pressures.
                                     </p>
                                 )}
                             </div>
