@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ElementType, ReactNode, CSSProperties } from "react";
 
 type StarBorderProps<T extends ElementType = "button"> = {
     as?: T;
@@ -19,15 +19,16 @@ export default function StarBorder<T extends ElementType = "button">({
     ...rest
 }: StarBorderProps<T>) {
     const Component = as || "button";
+    const { style, ...restProps } = rest as { style?: CSSProperties };
 
     return (
         <Component
             className={`relative inline-block rounded-[20px] overflow-hidden ${className}`}
             style={{
                 padding: `${thickness}px 0`,
-                ...(rest as Record<string, unknown>).style,
+                ...(style || {}),
             }}
-            {...rest}
+            {...restProps}
         >
             {/* Bottom gradient border */}
             <div
@@ -46,7 +47,7 @@ export default function StarBorder<T extends ElementType = "button">({
                 }}
             />
             {/* Inner content */}
-            <div className="relative border border-slate-200/50 dark:border-slate-700/50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm text-center px-4 py-1.5 rounded-[20px] z-[1]">
+            <div className="relative border border-slate-50/30 dark:border-slate-700/50 bg-white dark:bg-slate-900/80 text-center px-4 py-1.5 rounded-[20px] z-[1]">
                 {children}
             </div>
         </Component>

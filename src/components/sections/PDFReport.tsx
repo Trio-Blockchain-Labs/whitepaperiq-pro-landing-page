@@ -51,7 +51,7 @@ export default function PDFReport() {
                         <div className="mt-10">
                             <a
                                 className="px-6 py-3 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold hover:bg-slate-800 dark:hover:bg-slate-200 transition-all inline-flex items-center gap-2"
-                                href="/ethereum.pdf"
+                                href="/bitcoin.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
