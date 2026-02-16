@@ -24,7 +24,7 @@ export default function PricingSection() {
                             className={`relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${tier.popular
                                     ? "border-2 border-[#8c25f4] shadow-xl shadow-[#8c25f4]/10"
                                     : "border-slate-200 dark:border-slate-700"
-                                } bg-white dark:bg-slate-900`}
+                                } bg-white dark:bg-slate-900 flex flex-col h-full`}
                         >
                             {tier.popular && (
                                 <div className="absolute top-0 right-0 bg-gradient-to-r from-violet-500 to-pink-500 text-white text-xs font-bold px-4 py-1 rounded-bl-lg">
@@ -51,7 +51,7 @@ export default function PricingSection() {
                                     ))}
                                 </ul>
                             </CardContent>
-                            <CardFooter>
+                            <CardFooter className="mt-auto">
                                 <Button
                                     className={`w-full py-3 rounded-lg font-semibold h-auto ${tier.popular
                                             ? "bg-gradient-to-r from-violet-500 to-pink-500 text-white shadow-lg shadow-[#8c25f4]/25 hover:shadow-[#8c25f4]/40"

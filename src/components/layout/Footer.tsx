@@ -62,7 +62,10 @@ export default function Footer() {
                 <Separator className="bg-slate-100 dark:bg-slate-800" />
 
                 <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-xs text-slate-400">© 2025 Whitepaper IQ Inc. All rights reserved.</p>
+                    <div className="flex flex-col items-center md:items-start gap-1 text-xs text-slate-400">
+                        <p>© 2025 Whitepaper IQ Inc. All rights reserved.</p>
+                        <p>Created by TriO Blockchain Labs</p>
+                    </div>
                     <div className="flex space-x-4">
                         <a className="text-slate-400 hover:text-[#8c25f4] transition-colors" href="#">
                             <span className="sr-only">Twitter</span>
