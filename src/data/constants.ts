@@ -44,20 +44,18 @@ export const PRICING_TIERS = [
 
 export const FOOTER_LINKS = {
     product: [
-        { label: "Features", href: "#" },
-        { label: "Integrations", href: "#" },
-        { label: "Pricing", href: "#" },
-        { label: "Changelog", href: "#" },
+        { label: "Risk Detection Engine", href: "#features" },
+        { label: "Due Diligence Suite", href: "#due-diligence" },
+        { label: "7-Criteria Circle", href: "#how-it-works" },
+        { label: "Professional Reports", href: "#pdf-report-section" },
     ],
     company: [
         { label: "About", href: "#" },
-        { label: "Blog", href: "#" },
-        { label: "Careers", href: "#" },
         { label: "Contact", href: "#" },
     ],
     legal: [
-        { label: "Privacy", href: "#" },
-        { label: "Terms", href: "#" },
-        { label: "Security", href: "#" },
+        { label: "Privacy Policy", href: "/whitepaper-iq-privacy-policy.pdf", target: "_blank" },
+        { label: "Terms of Service", href: "/whitepaper-iq-terms-and-conditions.pdf", target: "_blank" },
+        { label: "Ad Policy", href: "/whitepaper-iq-ad-policy.pdf", target: "_blank" },
     ],
 };
