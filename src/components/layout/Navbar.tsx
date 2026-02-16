@@ -1,19 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { NAV_LINKS } from "@/data/constants";
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
+    const [isAtHero, setIsAtHero] = useState(true);
+
+    useEffect(() => {
+        const onScroll = () => setIsAtHero(window.scrollY < 100);
+        onScroll();
+        window.addEventListener("scroll", onScroll);
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
 
     return (
-        <nav className="fixed w-full top-0 z-50 glass-nav transition-all duration-300">
+        <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${isAtHero ? "bg-transparent border-transparent" : "glass-nav"}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-20 items-center">
                     {/* Logo */}
-                    <div className="flex items-center gap-2">
+                    <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="flex items-center gap-2">
                         <img src="/logo.png" alt="Whitepaper IQ" className="h-8 w-auto" />
-                    </div>
+                    </a>
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex items-center space-x-8">
@@ -36,9 +44,12 @@ export default function Navbar() {
                         >
                             Login
                         </a>
-                        <Button className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 shadow-lg shadow-slate-200 dark:shadow-none rounded-lg px-5 py-2.5 text-sm font-semibold">
+                        <a
+                            href="mailto:whitepaperiq@gmail.com"
+                            className="inline-flex items-center justify-center rounded-lg bg-slate-900 dark:bg-white px-5 py-2.5 text-sm font-semibold text-white dark:text-slate-900 shadow-lg shadow-slate-200 dark:shadow-none hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors"
+                        >
                             Book Demo
-                        </Button>
+                        </a>
                     </div>
 
                     {/* Mobile Menu */}
@@ -68,9 +79,12 @@ export default function Navbar() {
                                     >
                                         Login
                                     </a>
-                                    <Button className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 w-full rounded-lg text-sm font-semibold">
+                                    <a
+                                        href="mailto:whitepaperiq@gmail.com"
+                                        className="inline-flex w-full items-center justify-center rounded-lg bg-slate-900 dark:bg-white px-5 py-2.5 text-sm font-semibold text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors"
+                                    >
                                         Book Demo
-                                    </Button>
+                                    </a>
                                 </div>
                             </SheetContent>
                         </Sheet>

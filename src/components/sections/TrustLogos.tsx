@@ -2,7 +2,7 @@ import { TRUST_LOGOS } from "@/data/constants";
 
 export default function TrustLogos() {
     return (
-        <section className="py-10 border-y border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50">
+        <section id="trust-logos" className="py-10 border-y border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <p className="text-center text-sm font-semibold text-slate-400 mb-6 uppercase tracking-widest">
                     Powered by Intelligence From

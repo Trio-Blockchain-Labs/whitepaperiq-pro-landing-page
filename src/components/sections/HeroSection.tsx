@@ -67,7 +67,10 @@ export default function HeroSection() {
 
                 {/* CTAs */}
                 <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                    <Button className="group relative px-8 py-3.5 rounded-lg bg-gradient-to-r from-violet-500 to-pink-500 text-white font-semibold shadow-xl shadow-[#8c25f4]/25 hover:shadow-[#8c25f4]/40 hover:-translate-y-0.5 transition-all duration-200 overflow-hidden h-auto">
+                    <Button
+                        className="group relative px-8 py-3.5 rounded-lg bg-gradient-to-r from-violet-500 to-pink-500 text-white font-semibold shadow-xl shadow-[#8c25f4]/25 hover:shadow-[#8c25f4]/40 hover:-translate-y-0.5 transition-all duration-200 overflow-hidden h-auto"
+                        onClick={() => document.getElementById("trust-logos")?.scrollIntoView({ behavior: "smooth" })}
+                    >
                         <div className="absolute inset-0 w-full h-full bg-white/20 group-hover:bg-white/10 transition-colors" />
                         <span className="relative flex items-center gap-2">
                             Explore
@@ -98,7 +101,7 @@ export default function HeroSection() {
                             </div>
                             <div className="mx-auto bg-white dark:bg-slate-900 px-4 py-1 rounded text-xs text-slate-400 font-mono flex items-center gap-2 border border-slate-200 dark:border-slate-700 w-96 justify-center">
                                 <span className="material-icons text-[10px]">lock</span>
-                                app.whitepaperiq.com/analysis/btc-021
+                                whitepaperiq.com/analysis/btc
                             </div>
                         </div>
 

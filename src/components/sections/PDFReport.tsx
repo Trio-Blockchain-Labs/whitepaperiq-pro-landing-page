@@ -90,12 +90,7 @@ export default function PDFReport() {
                                 {/* PDF Header */}
                                 <div className="flex justify-between items-start mb-10 border-b border-slate-100 dark:border-slate-700 pb-6">
                                     <div>
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">WHITEPAPER</span>
-                                            <span className="w-6 h-6 rounded bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-[#8c25f4]">
-                                                <span className="material-icons text-sm">layers</span>
-                                            </span>
-                                        </div>
+                                        <img src="/logo.png" alt="Whitepaper IQ" className="h-8 w-auto mb-2" />
                                         <div className="text-xs text-slate-500 dark:text-slate-400">Bitcoin Analysis</div>
                                     </div>
                                     <div className="text-right">
