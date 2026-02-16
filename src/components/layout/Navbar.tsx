@@ -52,7 +52,8 @@ export default function Navbar() {
                             Login
                         </a>
                         <a
-                            href="mailto:whitepaperiq@gmail.com"
+                            href="mailto:whitepaperiq@gmail.com?subject=Book%20Demo%20Request"
+                            target="_self"
                             className="inline-flex items-center justify-center rounded-lg bg-slate-900 dark:bg-white px-5 py-2.5 text-sm font-semibold text-white dark:text-slate-900 shadow-lg shadow-slate-200 dark:shadow-none hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors"
                         >
                             Book Demo
@@ -87,7 +88,8 @@ export default function Navbar() {
                                         Login
                                     </a>
                                     <a
-                                        href="mailto:whitepaperiq@gmail.com"
+                                        href="mailto:whitepaperiq@gmail.com?subject=Book%20Demo%20Request"
+                                        target="_self"
                                         className="inline-flex w-full items-center justify-center rounded-lg bg-slate-900 dark:bg-white px-5 py-2.5 text-sm font-semibold text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors"
                                     >
                                         Book Demo
