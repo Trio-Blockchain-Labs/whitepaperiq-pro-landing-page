@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import StarBorder from "@/components/ui/star-border";
 import { NAV_LINKS } from "@/data/constants";
 
 export default function Navbar() {
@@ -25,21 +24,15 @@ export default function Navbar() {
                     </a>
 
                     {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center space-x-3">
+                    <div className="hidden md:flex items-center space-x-8">
                         {NAV_LINKS.map((link) => (
-                            <StarBorder
+                            <a
                                 key={link.href}
-                                as="a"
+                                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-[#8c25f4] transition-colors"
                                 href={link.href}
-                                className="no-underline"
-                                color="#8c25f4"
-                                speed="5s"
-                                thickness={1}
                             >
-                                <span className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-[#8c25f4] transition-colors">
-                                    {link.label}
-                                </span>
-                            </StarBorder>
+                                {link.label}
+                            </a>
                         ))}
                     </div>
 
@@ -52,8 +45,7 @@ export default function Navbar() {
                             Login
                         </a>
                         <a
-                            href="mailto:whitepaperiq@gmail.com?subject=Book%20Demo%20Request"
-                            target="_self"
+                            href="mailto:whitepaperiq@gmail.com"
                             className="inline-flex items-center justify-center rounded-lg bg-slate-900 dark:bg-white px-5 py-2.5 text-sm font-semibold text-white dark:text-slate-900 shadow-lg shadow-slate-200 dark:shadow-none hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors"
                         >
                             Book Demo
@@ -88,8 +80,7 @@ export default function Navbar() {
                                         Login
                                     </a>
                                     <a
-                                        href="mailto:whitepaperiq@gmail.com?subject=Book%20Demo%20Request"
-                                        target="_self"
+                                        href="mailto:whitepaperiq@gmail.com"
                                         className="inline-flex w-full items-center justify-center rounded-lg bg-slate-900 dark:bg-white px-5 py-2.5 text-sm font-semibold text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors"
                                     >
                                         Book Demo
