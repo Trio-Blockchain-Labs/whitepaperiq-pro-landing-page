@@ -17,12 +17,12 @@ export default function PricingSection() {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                     {PRICING_TIERS.map((tier) => (
                         <Card
                             key={tier.name}
                             className={`relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${tier.popular
-                                    ? "border-2 border-[#8c25f4] shadow-xl shadow-[#8c25f4]/10"
+                                    ? "border-2 border-[#8c25f4] shadow-xl shadow-[#8c25f4]/10 scale-[1.03]"
                                     : "border-slate-200 dark:border-slate-700"
                                 } bg-white dark:bg-slate-900 flex flex-col h-full`}
                         >
@@ -32,6 +32,11 @@ export default function PricingSection() {
                                 </div>
                             )}
                             <CardHeader>
+                                <div className="flex items-center gap-2 mb-1">
+                                    <span className="text-[10px] font-bold uppercase tracking-wider bg-[#8c25f4]/10 text-[#8c25f4] px-2 py-0.5 rounded-full">
+                                        {tier.badge}
+                                    </span>
+                                </div>
                                 <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">{tier.name}</CardTitle>
                                 <CardDescription className="text-slate-500 dark:text-slate-400">{tier.description}</CardDescription>
                             </CardHeader>
