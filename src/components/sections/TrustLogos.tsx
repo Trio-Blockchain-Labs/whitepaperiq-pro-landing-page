@@ -11,10 +11,6 @@ const trustLogos: LogoItem[] = [
         title: "CoinGecko",
     },
     {
-        node: <span className="material-icons text-4xl text-slate-600 dark:text-slate-300">hub</span>,
-        title: "Dune",
-    },
-    {
         node: <img src="/defy-logo.png" alt="Defy" className="h-9 w-9 rounded-lg object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />,
         title: "Defy",
     },
