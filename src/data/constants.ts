@@ -84,7 +84,7 @@ export const FOOTER_LINKS = {
     ],
     company: [
         { label: "About", href: "#" },
-        { label: "Contact", href: "#" },
+        { label: "Contact", href: "mailto:contact@whitepaperiq.com" },
     ],
     legal: [
         { label: "Privacy Policy", href: "/whitepaper-iq-privacy-policy.pdf", target: "_blank" },
