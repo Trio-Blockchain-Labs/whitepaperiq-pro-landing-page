@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, type ReactNode, type CSSProperties } from "react";
+import { useMemo, useRef, useState, useEffect, type ReactNode, type CSSProperties } from "react";
 
 export interface LogoItem {
     node?: ReactNode;
@@ -46,60 +46,40 @@ export default function LogoLoop({
 }: LogoLoopProps) {
     const trackRef = useRef<HTMLDivElement>(null);
     const [isHovered, setIsHovered] = useState(false);
+    const [setWidth, setSetWidth] = useState<number | null>(null);
 
-    // Duplicate logos enough times to fill the viewport seamlessly
-    const duplicatedLogos = [...logos, ...logos, ...logos, ...logos];
-
-    const currentSpeed = isHovered && hoverSpeed !== undefined ? hoverSpeed : speed;
+    // Only duplicate logos twice (more efficient than 4x)
+    // CSS animation will handle the seamless loop
+    const duplicatedLogos = useMemo(() => [...logos, ...logos], [logos]);
 
     // Calculate animation duration based on speed
-    // We need to know the total width of one set of logos
-    const singleSetCount = logos.length;
-
+    // Duration = distance / speed (in seconds)
+    // We'll measure the actual width and calculate duration dynamically
     useEffect(() => {
         const track = trackRef.current;
-        if (!track) return;
+        if (!track || logos.length === 0) return;
 
-        let animationId: number;
-        let lastTime: number | null = null;
-        let offset = 0;
-
-        // Measure the width of a single set
+        // Measure width of a single set of logos
         const items = track.children;
-        let singleSetWidth = 0;
-        for (let i = 0; i < singleSetCount; i++) {
-            if (items[i]) {
-                singleSetWidth += (items[i] as HTMLElement).offsetWidth + gap;
-            }
+        if (items.length === 0) return;
+
+        let width = 0;
+        const singleSetCount = logos.length;
+        for (let i = 0; i < singleSetCount && i < items.length; i++) {
+            const item = items[i] as HTMLElement;
+            width += item.offsetWidth + gap;
         }
 
-        const animate = (time: number) => {
-            if (lastTime === null) lastTime = time;
-            const delta = (time - lastTime) / 1000; // seconds
-            lastTime = time;
+        if (width > 0) {
+            setSetWidth(width);
+        }
+    }, [logos.length, gap]);
 
-            const pxPerSecond = currentSpeed;
-            if (direction === "left") {
-                offset -= pxPerSecond * delta;
-            } else {
-                offset += pxPerSecond * delta;
-            }
-
-            // Reset offset when we've scrolled one full set width
-            if (direction === "left" && offset <= -singleSetWidth) {
-                offset += singleSetWidth;
-            } else if (direction === "right" && offset >= singleSetWidth) {
-                offset -= singleSetWidth;
-            }
-
-            track.style.transform = `translateX(${offset}px)`;
-            animationId = requestAnimationFrame(animate);
-        };
-
-        animationId = requestAnimationFrame(animate);
-
-        return () => cancelAnimationFrame(animationId);
-    }, [currentSpeed, direction, gap, singleSetCount]);
+    // Calculate animation duration: distance (px) / speed (px/s) = duration (s)
+    const animationDuration = setWidth && speed > 0 ? `${setWidth / speed}s` : "20s";
+    const hoverAnimationDuration = setWidth && hoverSpeed !== undefined && hoverSpeed > 0 
+        ? `${setWidth / hoverSpeed}s` 
+        : animationDuration;
 
     const fadeStyle: CSSProperties = fadeOut
         ? {
@@ -108,91 +88,124 @@ export default function LogoLoop({
           }
         : {};
 
+    // CSS animation keyframes will be handled inline
+    const animationName = direction === "left" ? "scroll-left" : "scroll-right";
+    const animationStyle: CSSProperties = {
+        animation: `${animationName} ${isHovered && hoverSpeed !== undefined ? hoverAnimationDuration : animationDuration} linear infinite`,
+        animationPlayState: isHovered && hoverSpeed === 0 ? "paused" : "running",
+    };
+
     return (
-        <div
-            className="relative w-full overflow-hidden"
-            style={{ height: logoHeight + 20, ...fadeStyle }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            role="marquee"
-            aria-label={ariaLabel}
-        >
-            {/* Fade edges with solid color (alternative approach) */}
-            {fadeOut && fadeOutColor && (
-                <>
-                    <div
-                        className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
-                        style={{
-                            background: `linear-gradient(to right, ${fadeOutColor}, transparent)`,
-                        }}
-                    />
-                    <div
-                        className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
-                        style={{
-                            background: `linear-gradient(to left, ${fadeOutColor}, transparent)`,
-                        }}
-                    />
-                </>
-            )}
-
-            {/* Track */}
+        <>
+            {/* CSS Keyframes for animation - using 50% since we duplicate logos twice */}
+            <style>{`
+                @keyframes scroll-left {
+                    from {
+                        transform: translateX(0);
+                    }
+                    to {
+                        transform: translateX(-50%);
+                    }
+                }
+                @keyframes scroll-right {
+                    from {
+                        transform: translateX(-50%);
+                    }
+                    to {
+                        transform: translateX(0);
+                    }
+                }
+            `}</style>
             <div
-                ref={trackRef}
-                className="flex items-center will-change-transform"
-                style={{ gap: `${gap}px`, height: logoHeight + 20 }}
+                className="relative w-full overflow-hidden"
+                style={{ height: logoHeight + 20, ...fadeStyle }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                role="marquee"
+                aria-label={ariaLabel}
             >
-                {duplicatedLogos.map((logo, i) => {
-                    const content = logo.node ? (
-                        <span
-                            style={{ fontSize: logoHeight, lineHeight: 1 }}
-                            className="flex items-center justify-center"
-                        >
-                            {logo.node}
-                        </span>
-                    ) : logo.src ? (
-                        <img
-                            src={logo.src}
-                            alt={logo.alt || logo.title || ""}
-                            style={{ height: logoHeight, width: "auto" }}
-                            className="object-contain"
-                            draggable={false}
-                        />
-                    ) : null;
-
-                    const inner = (
+                {/* Fade edges with solid color */}
+                {fadeOut && fadeOutColor && (
+                    <>
                         <div
-                            className={`flex items-center shrink-0 transition-transform duration-300 ${
-                                scaleOnHover ? "hover:scale-110" : ""
-                            }`}
-                            style={{ height: logoHeight }}
-                            title={logo.title}
-                        >
-                            {content}
-                            {logo.title && (
-                                <span className="ml-2 font-bold text-lg font-display text-slate-700 dark:text-slate-300 whitespace-nowrap">
-                                    {logo.title}
-                                </span>
-                            )}
-                        </div>
-                    );
+                            className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+                            style={{
+                                background: `linear-gradient(to right, ${fadeOutColor}, transparent)`,
+                            }}
+                        />
+                        <div
+                            className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+                            style={{
+                                background: `linear-gradient(to left, ${fadeOutColor}, transparent)`,
+                            }}
+                        />
+                    </>
+                )}
 
-                    return logo.href ? (
-                        <a
-                            key={`${logo.title}-${i}`}
-                            href={logo.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="shrink-0 no-underline"
-                        >
-                            {inner}
-                        </a>
-                    ) : (
-                        <div key={`${logo.title}-${i}`} className="shrink-0">
-                            {inner}
-                        </div>
-                    );
-                })}
+                {/* Track with CSS animation */}
+                <div
+                    ref={trackRef}
+                    className="flex items-center will-change-transform"
+                    style={{ 
+                        gap: `${gap}px`, 
+                        height: logoHeight + 20,
+                        ...animationStyle,
+                    }}
+                >
+                    {duplicatedLogos.map((logo, i) => {
+                        const content = logo.node ? (
+                            <span
+                                style={{ fontSize: logoHeight, lineHeight: 1 }}
+                                className="flex items-center justify-center"
+                            >
+                                {logo.node}
+                            </span>
+                        ) : logo.src ? (
+                            <img
+                                src={logo.src}
+                                alt={logo.alt || logo.title || ""}
+                                style={{ height: logoHeight, width: "auto" }}
+                                className="object-contain"
+                                draggable={false}
+                                loading="lazy"
+                            />
+                        ) : null;
+
+                        const inner = (
+                            <div
+                                className={`group flex items-center shrink-0 transition-transform duration-300 ${
+                                    scaleOnHover ? "hover:scale-110" : ""
+                                }`}
+                                style={{ height: logoHeight }}
+                                title={logo.title}
+                            >
+                                {content}
+                                {logo.title && (
+                                    <span className="ml-2 font-bold text-lg font-display text-slate-700 dark:text-slate-300 whitespace-nowrap">
+                                        {logo.title}
+                                    </span>
+                                )}
+                            </div>
+                        );
+
+                        return logo.href ? (
+                            <a
+                                key={`${logo.title}-${i}`}
+                                href={logo.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="shrink-0 no-underline"
+                            >
+                                {inner}
+                            </a>
+                        ) : (
+                            <div key={`${logo.title}-${i}`} className="shrink-0">
+                                {inner}
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
-        </div>
+        </>
     );
 }
