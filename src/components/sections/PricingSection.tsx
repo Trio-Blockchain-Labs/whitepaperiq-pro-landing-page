@@ -57,14 +57,28 @@ export default function PricingSection() {
                                 </ul>
                             </CardContent>
                             <CardFooter className="mt-auto">
-                                <Button
-                                    className={`w-full py-3 rounded-lg font-semibold h-auto ${tier.popular
-                                            ? "bg-gradient-to-r from-violet-500 to-pink-500 text-white shadow-lg shadow-[#8c25f4]/25 hover:shadow-[#8c25f4]/40"
-                                            : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700"
-                                        }`}
-                                >
-                                    {tier.cta}
-                                </Button>
+                                {tier.cta === "Contact Sales" ? (
+                                    <Button
+                                        className={`w-full py-3 rounded-lg font-semibold h-auto ${tier.popular
+                                                ? "bg-gradient-to-r from-violet-500 to-pink-500 text-white shadow-lg shadow-[#8c25f4]/25 hover:shadow-[#8c25f4]/40"
+                                                : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700"
+                                            }`}
+                                        asChild
+                                    >
+                                        <a href="mailto:contact@whitepaperiq.com">
+                                            {tier.cta}
+                                        </a>
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        className={`w-full py-3 rounded-lg font-semibold h-auto ${tier.popular
+                                                ? "bg-gradient-to-r from-violet-500 to-pink-500 text-white shadow-lg shadow-[#8c25f4]/25 hover:shadow-[#8c25f4]/40"
+                                                : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700"
+                                            }`}
+                                    >
+                                        {tier.cta}
+                                    </Button>
+                                )}
                             </CardFooter>
                         </Card>
                     ))}
