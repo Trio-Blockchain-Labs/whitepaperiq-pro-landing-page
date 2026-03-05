@@ -2,6 +2,8 @@ export const NAV_LINKS = [
     { label: "Features", href: "#features" },
     { label: "How it Works", href: "#how-it-works" },
     { label: "Pricing", href: "#pricing" },
+    { label: "About", href: "#about" },
+    { label: "Team", href: "#team" },
 ];
 
 export const TRUST_LOGOS = [
@@ -75,6 +77,63 @@ export const PRICING_TIERS = [
     },
 ];
 
+export const TEAM_MEMBERS = [
+    {
+        name: "Tahsin Büyükyavuz",
+        role: "Co-Founder & CEO",
+        bio: "Blockchain strategist with expertise in crypto asset evaluation and institutional compliance.",
+        icon: "rocket_launch",
+        avatar: "/team-tahsin.png",
+        linkedin: "https://www.linkedin.com/in/tahsin-b%C3%BCy%C3%BCkyavuz-trio-blockchain-labs/",
+        twitter: "https://x.com/tahsinizm42",
+    },
+    {
+        name: "Fatih Altınışık",
+        role: "Software Engineer",
+        bio: "Architecting scalable backend systems for real-time on-chain data indexing and AI pipelines.",
+        icon: "terminal",
+        avatar: "/team-fatih.png",
+        linkedin: "https://www.linkedin.com/in/fatih-altinisik/",
+        twitter: "https://x.com/fatihaltinisikk",
+    },
+    {
+        name: "Nisa Nur Keklik",
+        role: "Project Manager",
+        bio: "Orchestrating cross-functional delivery to keep every sprint on track and every milestone hit.",
+        icon: "assignment_ind",
+        avatar: "/team-nisa.png",
+        linkedin: "https://www.linkedin.com/in/nisa-nur-keklik-75384b206/",
+        twitter: "https://x.com/nnurkeklik?s=11",
+    },
+    {
+        name: "Kerem Kaya",
+        role: "Front-End Developer",
+        bio: "Building polished, performant interfaces that bring complex blockchain data to life.",
+        icon: "code",
+        avatar: "/team-kerem.png",
+        linkedin: "https://www.linkedin.com/in/kerem-kaya-1574b0227/",
+        twitter: "",
+    },
+    {
+        name: "Azra Ülkebaş",
+        role: "Business Development",
+        bio: "Strategic partnerships lead with deep connections across exchanges and regulatory bodies.",
+        icon: "handshake",
+        avatar: "/team-azra.png",
+        linkedin: "https://www.linkedin.com/in/azra-%C3%BClkeba%C5%9F-02ab2a284/",
+        twitter: "https://x.com/UlkebasAzra",
+    },
+    {
+        name: "F. Sude Genç",
+        role: "Software Engineer",
+        bio: "Contributing across the full stack with a focus on rapid iteration and quality assurance.",
+        icon: "science",
+        avatar: "/team-sude.png",
+        linkedin: "https://www.linkedin.com/in/sude-genc-2290291b7/",
+        twitter: "https://x.com/SudeGenc8607",
+    },
+];
+
 export const FOOTER_LINKS = {
     product: [
         { label: "Risk Detection Engine", href: "#features" },
@@ -83,7 +142,8 @@ export const FOOTER_LINKS = {
         { label: "Professional Reports", href: "#pdf-report-section" },
     ],
     company: [
-        { label: "About", href: "#" },
+        { label: "About", href: "#about" },
+        { label: "Team", href: "#team" },
         { label: "Contact", href: "mailto:contact@whitepaperiq.com" },
     ],
     legal: [

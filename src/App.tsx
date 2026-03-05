@@ -9,6 +9,8 @@ import DueDiligenceSuite from "@/components/sections/DueDiligenceSuite";
 import Criterias from "@/components/sections/Criterias";
 import PDFReport from "@/components/sections/PDFReport";
 import PricingSection from "@/components/sections/PricingSection";
+import AboutUs from "@/components/sections/AboutUs";
+import OurTeam from "@/components/sections/OurTeam";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <PDFReport />
         <InstitutionalFeatures />
         <PricingSection />
+        <AboutUs />
+        <OurTeam />
       </main>
       <Footer />
     </div>
