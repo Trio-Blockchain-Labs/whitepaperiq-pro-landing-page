@@ -11,9 +11,18 @@ export default function Footer() {
                         <div className="flex items-center gap-2 mb-4">
                             <img src="/logo.png" alt="Whitepaper IQ" className="h-8 w-auto" />
                         </div>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
+                        <p className="text-sm text-slate-500 dark:text-slate-400">
                             The standard for institutional crypto due diligence.
                         </p>
+                        <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">
+                            For Contact:
+                        </p>
+                        <a
+                            href="mailto:contact@whitepaperiq.com"
+                            className="inline-block text-sm text-slate-500 dark:text-slate-400 hover:text-[#8c25f4] transition-colors"
+                        >
+                            contact@whitepaperiq.com
+                        </a>
                     </div>
 
                     {/* Product */}

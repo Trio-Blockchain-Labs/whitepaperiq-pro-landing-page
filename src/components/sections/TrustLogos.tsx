@@ -3,23 +3,27 @@ import type { LogoItem } from "@/components/ui/LogoLoop";
 
 const trustLogos: LogoItem[] = [
     {
-        node: <img src="/arkham-logo.png" alt="Arkham Intelligence" className="h-9 w-9 rounded-lg object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />,
+        node: <img src="/arkham-logo.png" alt="Arkham Intelligence" className="h-9 w-9 rounded-lg object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />,
         title: "Arkham",
     },
     {
-        node: <img src="/coingecko-logo.png" alt="CoinGecko" className="h-9 w-9 rounded-lg object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />,
+        node: <img src="/coingecko-logo.png" alt="CoinGecko" className="h-9 w-9 rounded-lg object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />,
         title: "CoinGecko",
     },
     {
+<<<<<<< HEAD
         node: <img src="/defy-logo.png" alt="Defy" className="h-9 w-9 rounded-lg object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />,
+=======
+        node: <img src="/defy-logo.png" alt="Defy" className="h-9 w-9 rounded-lg object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />,
+>>>>>>> 454fbc249587c40c18f368aa548069c28f5f010b
         title: "Defy",
     },
     {
-        node: <img src="/eachlabs-logo.png" alt="Each Labs" className="h-9 w-9 rounded-lg object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />,
+        node: <img src="/eachlabs-logo.png" alt="Each Labs" className="h-9 w-9 rounded-lg object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />,
         title: "Each Labs",
     },
     {
-        node: <img src="/bybit-logo.png" alt="Bybit" className="h-9 w-auto rounded-lg object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />,
+        node: <img src="/bybit-logo.png" alt="Bybit" className="h-9 w-auto rounded-lg object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />,
         title: "Bybit",
     },
     
