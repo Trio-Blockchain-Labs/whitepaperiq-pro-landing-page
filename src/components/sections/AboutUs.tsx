@@ -22,7 +22,7 @@ export default function AboutUs() {
                 </div>
 
                 {/* Highlight Cards */}
-                <div className="mb-20 max-w-3xl mx-auto space-y-6">
+                <div className="max-w-3xl mx-auto space-y-6">
                     {/* Finext Istanbul Award Banner */}
                     <div className="relative bg-white dark:bg-slate-800 rounded-2xl border border-amber-200/60 dark:border-amber-500/20 shadow-xl shadow-amber-500/10 p-8 overflow-hidden">
                         <div className="absolute top-0 right-0 w-40 h-40 bg-amber-400/10 rounded-full blur-3xl -z-0" />
@@ -54,26 +54,26 @@ export default function AboutUs() {
 
                     {/* Base & Farcaster Ecosystem Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Base */}
+                        {/* ETH Istanbul Award */}
                         <div className="relative bg-white dark:bg-slate-800 rounded-2xl border border-blue-200/60 dark:border-blue-500/20 shadow-xl shadow-blue-500/10 p-6 overflow-hidden">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-400/10 rounded-full blur-3xl -z-0" />
                             <div className="relative z-10 flex items-center gap-5">
                                 <div className="flex-shrink-0">
                                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                                        <span className="material-symbols-outlined text-2xl text-white">link</span>
+                                        <span className="material-symbols-outlined text-2xl text-white">emoji_events</span>
                                     </div>
                                 </div>
                                 <div>
                                     <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700/50 text-blue-700 dark:text-blue-400 text-[10px] font-bold uppercase tracking-wider mb-2">
-                                        <span className="material-icons text-xs">language</span>
-                                        On-Chain
+                                        <span className="material-icons text-xs">workspace_premium</span>
+                                        Award
                                     </div>
                                     <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
-                                        Live on Base
+                                        ETH Istanbul Award Winner
                                     </h3>
                                     <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                                        WhitepaperIQ is deployed as a mini app on the <span className="font-semibold text-slate-700 dark:text-slate-300">Base</span> network,
-                                        bringing institutional-grade analysis directly on-chain.
+                                        Our whitepaper was recognized and awarded at <span className="font-semibold text-slate-700 dark:text-slate-300">ETH Istanbul</span>,
+                                        validating our approach to decentralized asset intelligence and institutional-grade due diligence.
                                     </p>
                                 </div>
                             </div>
@@ -101,40 +101,6 @@ export default function AboutUs() {
                                         enabling decentralized social discovery and crypto due diligence in one place.
                                     </p>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Mission & Vision */}
-                <div className="max-w-3xl mx-auto feature-card-glass rounded-2xl p-8 md:p-10 transform transition-all hover:scale-[1.01]">
-                    <div className="space-y-8">
-                        <div className="flex items-start gap-4">
-                            <div className="w-10 h-10 bg-[#8c25f4]/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <span className="material-symbols-outlined text-xl text-[#8c25f4]">flag</span>
-                            </div>
-                            <div>
-                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Our Mission</h3>
-                                <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
-                                    Democratize institutional-quality crypto research — making transparent,
-                                    data-driven analysis accessible to every investor, not just hedge funds.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="border-t border-slate-200 dark:border-slate-700" />
-
-                        <div className="flex items-start gap-4">
-                            <div className="w-10 h-10 bg-pink-500/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <span className="material-symbols-outlined text-xl text-pink-500">visibility</span>
-                            </div>
-                            <div>
-                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Our Vision</h3>
-                                <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
-                                    A crypto ecosystem where every decision is driven by real data — where
-                                    projects meet the same rigorous standards as public companies and bad actors
-                                    are identified before they cause harm.
-                                </p>
                             </div>
                         </div>
                     </div>
