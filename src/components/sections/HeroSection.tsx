@@ -116,12 +116,13 @@ export default function HeroSection() {
                 </div>
 
                 {/* Two stacked "screens": Wallet Analysis sits behind Token Analysis with only its
-                    bottom edge peeking out. Hovering that visible sliver is the only way to reach it
+                    top edge peeking out. Hovering that visible sliver is the only way to reach it
                     (the rest of its box is covered by the front screen), and brings it to the front. */}
-                <div className="mt-20 relative mx-auto max-w-6xl pb-10 md:pb-14">
-                    {/* Wallet Analysis — behind by default. Bottom-anchored (not top-anchored) so the
-                        peek amount stays fixed no matter how the two cards' natural content heights differ. */}
-                    <div className="absolute inset-x-0 bottom-0 translate-y-8 md:translate-y-12 z-0 hover:z-30 hover:scale-[1.008] transition-transform duration-300 ease-out">
+                <div className="mt-20 relative mx-auto max-w-6xl pt-10 md:pt-14">
+                    {/* Wallet Analysis — behind by default. Top-anchored and pushed up (negative
+                        translate) so the peek amount is fixed by the offset itself, not derived from
+                        either card's natural content height. */}
+                    <div className="absolute inset-x-0 top-0 -translate-y-8 md:-translate-y-12 z-0 hover:z-30 hover:scale-[1.008] transition-transform duration-300 ease-out">
                         <div className="bg-white dark:bg-slate-900 rounded-xl shadow-xl hover:shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden transition-shadow duration-300">
                             {/* Browser Chrome */}
                             <div className="h-10 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center px-4 gap-2">
