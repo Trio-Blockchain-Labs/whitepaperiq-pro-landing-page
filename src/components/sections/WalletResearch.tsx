@@ -13,7 +13,7 @@ export default function WalletResearch() {
     const [reportOpen, setReportOpen] = useState(false);
 
     return (
-        <section id="wallet-research" className="py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
+        <section id="wallet-research" className="py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden min-h-screen flex flex-col justify-center">
             <div className="absolute inset-0 grid-bg pointer-events-none" />
             <div className="absolute top-1/3 left-0 w-96 h-96 bg-[#8c25f4]/10 rounded-full blur-3xl -z-10" />
 

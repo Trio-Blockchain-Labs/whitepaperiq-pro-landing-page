@@ -80,12 +80,12 @@ export const PRICING_GROUPS = [
     {
         id: "compliance",
         name: "Compliance & Shield",
-        description: "Chainalysis-integrated packages built for VASPs and exchanges — Kointra, Inveo, Bybit TR and similar institutions.",
+        description: "Chainalysis-integrated packages built for VASPs and exchanges.",
         tiers: [
             {
                 name: "Tier 1",
                 credits: "5,000 Credits",
-                description: "For VASPs beginning Chainalysis-integrated compliance workflows.",
+                description: "For VASPs compliance workflows.",
                 monthlyPrice: 799,
                 annualMonthlyPrice: 700,
                 annualTotal: 8400,

@@ -2,7 +2,7 @@ import TiltCard from "@/components/ui/TiltCard";
 
 export default function DueDiligenceSuite() {
     return (
-        <section id="due-diligence" className="py-24 bg-white dark:bg-slate-900">
+        <section id="due-diligence" className="py-24 bg-white dark:bg-slate-900 min-h-screen flex flex-col justify-center">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-16">

@@ -25,7 +25,7 @@ function LiveBadge() {
 
 export default function LiveFeatures() {
     return (
-        <section className="py-24 bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-background-dark relative overflow-hidden">
+        <section className="py-24 bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-background-dark relative overflow-hidden min-h-screen flex flex-col justify-center">
             <div className="absolute inset-0 grid-bg pointer-events-none" />
             <div className="absolute top-20 right-0 w-96 h-96 bg-[#8c25f4]/20 rounded-full blur-3xl -z-10" />
             <div className="absolute bottom-20 left-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -z-10" />

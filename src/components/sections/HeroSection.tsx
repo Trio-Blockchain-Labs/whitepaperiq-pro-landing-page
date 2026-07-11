@@ -65,7 +65,7 @@ export default function HeroSection() {
     };
 
     return (
-        <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+        <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden min-h-screen flex flex-col justify-center">
             {/* Three.js particle network */}
             <HeroBackground />
 

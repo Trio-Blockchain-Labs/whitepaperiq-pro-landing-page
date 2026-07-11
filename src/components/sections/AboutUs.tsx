@@ -1,6 +1,6 @@
 export default function AboutUs() {
     return (
-        <section id="about" className="py-24 bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-background-dark relative overflow-hidden">
+        <section id="about" className="py-24 bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-background-dark relative overflow-hidden min-h-screen flex flex-col justify-center">
             <div className="absolute inset-0 grid-bg pointer-events-none" />
             <div className="absolute top-32 left-0 w-80 h-80 bg-[#8c25f4]/15 rounded-full blur-3xl -z-0" />
             <div className="absolute bottom-20 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -z-0" />

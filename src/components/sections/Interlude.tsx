@@ -2,7 +2,7 @@ import { GridScan } from '@/components/GridScan';
 
 export default function Interlude() {
     return (
-        <section className="py-20 bg-white dark:bg-slate-950 relative overflow-hidden min-h-[600px] flex items-center justify-center">
+        <section className="py-20 bg-white dark:bg-slate-950 relative overflow-hidden min-h-screen flex items-center justify-center">
             <div className="absolute inset-0 z-0">
                 <GridScan
                     bloomSmoothing={1}

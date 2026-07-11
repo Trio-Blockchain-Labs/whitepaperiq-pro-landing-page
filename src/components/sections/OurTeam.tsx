@@ -69,7 +69,7 @@ export default function OurTeam() {
     const doubled = [...TEAM_MEMBERS, ...TEAM_MEMBERS];
 
     return (
-        <section id="team" className="py-24 bg-white dark:bg-slate-950 relative overflow-hidden">
+        <section id="team" className="py-24 bg-white dark:bg-slate-950 relative overflow-hidden min-h-screen flex flex-col justify-center">
             <div className="absolute inset-0 grid-bg pointer-events-none" />
             <div className="absolute top-0 right-1/4 w-72 h-72 bg-pink-500/10 rounded-full blur-3xl -z-0" />
             <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-[#8c25f4]/10 rounded-full blur-3xl -z-0" />

@@ -361,7 +361,7 @@ function WalletSearchTool() {
 
 export default function PDFReport() {
     return (
-        <section id="pdf-report-section" className="py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden">
+        <section id="pdf-report-section" className="py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden min-h-screen flex flex-col justify-center">
             {/* Desktop / tablet — draggable split reveal */}
             <div className="hidden lg:block px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto">
