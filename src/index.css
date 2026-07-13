@@ -251,6 +251,113 @@ body {
   box-shadow: 0 30px 60px rgba(140, 37, 244, 0.2), 0 0 0 1px rgba(140, 37, 244, 0.1);
 }
 
+/* ===== Wallet Research — map node breathing + background drift ===== */
+@keyframes node-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.node-breathe {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: node-breathe 3s ease-in-out infinite;
+}
+
+@keyframes map-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-3%, 2%) scale(1.08);
+  }
+}
+
+.map-drift {
+  animation: map-drift 18s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node-breathe,
+  .map-drift {
+    animation: none;
+  }
+}
+
+/* ===== Risk Detection Engine — node idle pulse + hub activation ping ===== */
+@keyframes node-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.node-pulse-ring {
+  animation: node-pulse-ring 2.5s ease-out infinite;
+}
+
+@keyframes hub-pulse-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+.hub-pulse-ping {
+  animation: hub-pulse-ping 0.6s ease-out 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node-pulse-ring,
+  .hub-pulse-ping {
+    animation: none;
+    display: none;
+  }
+}
+
+/* ===== Draggable Divider Attention Pulse ===== */
+@keyframes divider-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.divider-pulse-ring {
+  animation: divider-pulse-ring 2.5s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .divider-pulse-ring {
+    animation: none;
+    display: none;
+  }
+}
+
 /* ===== Hero Preview Card Shimmer ===== */
 .hero-shimmer {
   position: absolute;
