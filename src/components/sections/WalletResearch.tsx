@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { Zap, Link2, ShieldCheck, Eye } from "lucide-react";
+import ScrollFloat from "@/components/ui/ScrollFloat";
 
 const FEATURES = [
     { icon: Zap, label: "Real-time risk" },
@@ -105,7 +106,7 @@ export default function WalletResearch() {
             : {};
 
     return (
-        <section id="wallet-research" className="py-24 bg-white dark:bg-slate-950 relative overflow-hidden min-h-screen flex flex-col justify-center">
+        <section id="wallet-research" className="pt-8 md:pt-10 pb-24 bg-white dark:bg-slate-950 relative overflow-hidden flex flex-col justify-center">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 min-w-0 w-full">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     {/* Left – copy */}
@@ -117,12 +118,32 @@ export default function WalletResearch() {
                             <span className="text-[#7C3AED] font-bold text-sm">Wallet Research</span>
                         </motion.div>
 
-                        <motion.h2 {...fadeUp(0.1)} className="text-4xl lg:text-5xl font-extrabold leading-tight mb-8">
-                            <span className="text-slate-900 dark:text-white">Investigate any wallet</span>
-                            <br />
-                            <span className="text-[#7C3AED]">in secon</span>
-                            <span className="bg-gradient-to-r from-[#A78BFA] to-[#C4B5FD] bg-clip-text text-transparent">ds.</span>
-                        </motion.h2>
+                        <h2 className="text-4xl lg:text-5xl font-extrabold leading-tight mb-8">
+                            <ScrollFloat
+                                as="span"
+                                containerClassName="block"
+                                textClassName="text-slate-900 dark:text-white"
+                                animationDuration={1}
+                                ease="back.inOut(2)"
+                                scrollStart="center bottom+=50%"
+                                scrollEnd="bottom bottom-=40%"
+                                stagger={0.03}
+                            >
+                                Investigate any wallet
+                            </ScrollFloat>
+                            <ScrollFloat
+                                as="span"
+                                containerClassName="block"
+                                textClassName="text-[#7C3AED]"
+                                animationDuration={1}
+                                ease="back.inOut(2)"
+                                scrollStart="center bottom+=50%"
+                                scrollEnd="bottom bottom-=40%"
+                                stagger={0.03}
+                            >
+                                in seconds.
+                            </ScrollFloat>
+                        </h2>
 
                         <motion.div {...fadeUp(0.2)} className="flex flex-wrap gap-x-6 gap-y-3 pt-6 border-t border-slate-200 dark:border-slate-800">
                             {FEATURES.map(({ icon: Icon, label }) => (

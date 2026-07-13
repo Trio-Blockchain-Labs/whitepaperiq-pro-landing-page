@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Shield, Link2, Database, FileText, ChevronDown, Hexagon, BarChart3, Users, Sparkles } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Shield, Link2, Database, FileText, ChevronDown, Hexagon, BarChart3, Users, Sparkles, MousePointerClick } from "lucide-react";
 import { cn } from "@/lib/utils";
+import TrueFocus from "@/components/ui/TrueFocus";
 
 type NodeId = "extract" | "verify" | "detect";
 
@@ -33,6 +34,9 @@ interface RiskNode {
 // from colliding with the Detect node below it.
 const CANVAS = { w: 520, h: 780 };
 const HUB = { x: 172, y: 380 };
+// Radius the fast orbit-halo dots travel at — lines up with the solid inner
+// ring (34% of canvas width) already drawn behind the hub.
+const ORBIT_RADIUS = 88;
 
 const NODES: RiskNode[] = [
     {
@@ -116,6 +120,9 @@ export default function RiskDetection() {
     const [prefersReducedMotion, setPrefersReducedMotion] = useState(
         () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
     );
+    const diagramSvgRef = useRef<SVGSVGElement>(null);
+    const diagramWrapRef = useRef<HTMLDivElement>(null);
+    const [diagramInView, setDiagramInView] = useState(false);
 
     useEffect(() => {
         const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -123,6 +130,25 @@ export default function RiskDetection() {
         media.addEventListener("change", onChange);
         return () => media.removeEventListener("change", onChange);
     }, []);
+
+    // Native SMIL animations (orbit halo + traveling packets) are paused/resumed
+    // as a group via the SVG root's own pause API when the diagram scrolls off-screen.
+    useEffect(() => {
+        const node = diagramWrapRef.current;
+        if (!node) return;
+        const observer = new IntersectionObserver(([entry]) => setDiagramInView(!!entry?.isIntersecting), {
+            threshold: 0.15,
+        });
+        observer.observe(node);
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        const svg = diagramSvgRef.current;
+        if (!svg || prefersReducedMotion) return;
+        if (diagramInView) svg.unpauseAnimations();
+        else svg.pauseAnimations();
+    }, [diagramInView, prefersReducedMotion]);
 
     const activeId = hoveredId ?? pinnedId;
 
@@ -142,7 +168,7 @@ export default function RiskDetection() {
     const showIdlePulse = !hasInteracted && !prefersReducedMotion;
 
     return (
-        <section id="features" className="py-24 bg-white dark:bg-slate-950 relative overflow-hidden min-h-screen flex flex-col justify-center">
+        <section id="features" className="pt-24 pb-8 md:pb-10 bg-white dark:bg-slate-950 relative overflow-hidden flex flex-col justify-center">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-w-0 w-full">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     {/* Text column */}
@@ -152,7 +178,15 @@ export default function RiskDetection() {
                             <span className="text-[#7C3AED] font-bold text-sm uppercase tracking-wider">Risk Detection Engine</span>
                         </div>
                         <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight mb-6">
-                            Whitepaper vs. <span className="gradient-text">Reality.</span>
+                            <TrueFocus
+                                sentence="Whitepaper Reality."
+                                borderColor="#7C3AED"
+                                glowColor="rgba(124, 58, 237, 0.6)"
+                                blurAmount={4}
+                                animationDuration={0.5}
+                                pauseBetweenAnimations={1.2}
+                                manualMode={prefersReducedMotion}
+                            />
                         </h2>
                         <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed mb-10">
                             We compare what projects claim with what&apos;s really on-chain. Instantly spot
@@ -236,12 +270,23 @@ export default function RiskDetection() {
 
                     {/* Desktop — orbital hub diagram */}
                     <div className="order-2 lg:order-1 hidden lg:block">
+                        <p
+                            className={cn(
+                                "flex items-center justify-center gap-1.5 text-xs font-medium text-slate-400 dark:text-slate-500 mb-3 transition-opacity duration-300",
+                                hasInteracted ? "opacity-0" : "opacity-100"
+                            )}
+                        >
+                            <MousePointerClick className="w-3.5 h-3.5" strokeWidth={2} />
+                            Click a step to see how it works
+                        </p>
                         <div
+                            ref={diagramWrapRef}
                             className="relative w-full mx-auto"
                             style={{ maxWidth: CANVAS.w, aspectRatio: `${CANVAS.w} / ${CANVAS.h}` }}
                         >
                             {/* Connecting lines + hub-end glow dots */}
                             <svg
+                                ref={diagramSvgRef}
                                 className="absolute inset-0 w-full h-full pointer-events-none"
                                 viewBox={`0 0 ${CANVAS.w} ${CANVAS.h}`}
                             >
@@ -251,11 +296,10 @@ export default function RiskDetection() {
                                     const dotY = HUB.y + (node.y - HUB.y) * 0.22;
                                     return (
                                         <g key={node.id}>
-                                            <line
-                                                x1={HUB.x}
-                                                y1={HUB.y}
-                                                x2={node.x}
-                                                y2={node.y}
+                                            <path
+                                                id={`risk-path-${node.id}`}
+                                                d={`M${HUB.x} ${HUB.y} L${node.x} ${node.y}`}
+                                                fill="none"
                                                 strokeWidth={isActive ? 2 : 1.5}
                                                 className={cn("transition-all duration-300", isActive ? node.lineActive : node.line)}
                                             />
@@ -264,6 +308,53 @@ export default function RiskDetection() {
                                         </g>
                                     );
                                 })}
+
+                                {/* Fast halo of dots orbiting the hub — one per node color */}
+                                {!prefersReducedMotion && (
+                                    <g>
+                                        {NODES.map((node, i) => (
+                                            <circle key={`orbit-${node.id}`} cx={HUB.x + ORBIT_RADIUS} cy={HUB.y} r={3.5} className={node.dot}>
+                                                <animateTransform
+                                                    attributeName="transform"
+                                                    type="rotate"
+                                                    from={`${i * 120} ${HUB.x} ${HUB.y}`}
+                                                    to={`${i * 120 + 360} ${HUB.x} ${HUB.y}`}
+                                                    dur="1.8s"
+                                                    repeatCount="indefinite"
+                                                />
+                                            </circle>
+                                        ))}
+                                    </g>
+                                )}
+
+                                {/* Traveling packets — peel off the hub and follow each path in
+                                    sequence (green, blue, red), chained via SMIL begin/end events
+                                    so the loop runs forever without any JS timers. */}
+                                {!prefersReducedMotion &&
+                                    NODES.map((node, i) => {
+                                        // Chain via the *animation* elements' ids (not the circle's) —
+                                        // SMIL "id.end" event syncing only resolves against timed
+                                        // elements, so this must point at the <animateMotion>, not its shape.
+                                        const prevNode = NODES[(i + NODES.length - 1) % NODES.length];
+                                        const motionId = `risk-packet-motion-${node.id}`;
+                                        const prevMotionId = `risk-packet-motion-${prevNode.id}`;
+                                        const beginValue = i === 0 ? `0s;${prevMotionId}.end+0.25s` : `${prevMotionId}.end+0.25s`;
+                                        return (
+                                            <circle key={node.id} r={5} className={node.dot} opacity={0}>
+                                                <animateMotion id={motionId} dur="0.9s" begin={beginValue} fill="freeze">
+                                                    <mpath href={`#risk-path-${node.id}`} />
+                                                </animateMotion>
+                                                <animate
+                                                    attributeName="opacity"
+                                                    values="0;1;1;0"
+                                                    keyTimes="0;0.15;0.8;1"
+                                                    dur="0.9s"
+                                                    begin={beginValue}
+                                                    fill="freeze"
+                                                />
+                                            </circle>
+                                        );
+                                    })}
                             </svg>
 
                             {/* Concentric rings behind the hub — width is a % of canvas width; aspectRatio
@@ -329,7 +420,7 @@ export default function RiskDetection() {
                                         )}
                                         style={{
                                             ...nodePercent(node),
-                                            width: "21%",
+                                            width: "16%",
                                             aspectRatio: "1 / 1",
                                             transform: "translate(-50%, -50%)",
                                         }}
