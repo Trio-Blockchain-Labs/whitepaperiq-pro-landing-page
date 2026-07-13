@@ -5,7 +5,7 @@ export default function AboutUs() {
             <div className="absolute top-32 left-0 w-80 h-80 bg-[#8c25f4]/15 rounded-full blur-3xl -z-0" />
             <div className="absolute bottom-20 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -z-0" />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 min-w-0 w-full">
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <span className="text-[#8c25f4] font-bold text-sm uppercase tracking-wider">About Us</span>
@@ -15,9 +15,7 @@ export default function AboutUs() {
                     </h2>
                     <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed">
                         WhitepaperIQ operates under <span className="font-semibold text-slate-700 dark:text-slate-200">TriO Blockchain Labs</span> —
-                        an institutional-grade crypto due diligence platform
-                        that transforms how investors, regulators, and analysts evaluate
-                        digital assets, replacing guesswork with verifiable, AI-powered insights.
+                        replacing guesswork with verifiable, AI-powered insights.
                     </p>
                 </div>
 
@@ -44,63 +42,32 @@ export default function AboutUs() {
                                 </h3>
                                 <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                                     WhitepaperIQ was recognized as a finalist at <span className="font-semibold text-slate-700 dark:text-slate-300">Finext Istanbul</span>,
-                                    one of Turkey's premier fintech and innovation competitions. Our AI-powered due diligence
-                                    approach earned an award for its unique contribution to institutional crypto analysis —
-                                    validating our vision of bringing transparency and trust to digital asset markets.
+                                    one of Turkey's premier fintech and innovation competitions.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    {/* Base & Farcaster Ecosystem Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* ETH Istanbul Award */}
-                        <div className="relative bg-white dark:bg-slate-800 rounded-2xl border border-blue-200/60 dark:border-blue-500/20 shadow-xl shadow-blue-500/10 p-6 overflow-hidden">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-400/10 rounded-full blur-3xl -z-0" />
-                            <div className="relative z-10 flex items-center gap-5">
-                                <div className="flex-shrink-0">
-                                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                                        <span className="material-symbols-outlined text-2xl text-white">emoji_events</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700/50 text-blue-700 dark:text-blue-400 text-[10px] font-bold uppercase tracking-wider mb-2">
-                                        <span className="material-icons text-xs">workspace_premium</span>
-                                        Award
-                                    </div>
-                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
-                                        ETH Istanbul Award Winner
-                                    </h3>
-                                    <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                                        Our whitepaper was recognized and awarded at <span className="font-semibold text-slate-700 dark:text-slate-300">ETH Istanbul</span>,
-                                        validating our approach to decentralized asset intelligence and institutional-grade due diligence.
-                                    </p>
+                    {/* ETH Istanbul Award */}
+                    <div className="relative bg-white dark:bg-slate-800 rounded-2xl border border-blue-200/60 dark:border-blue-500/20 shadow-xl shadow-blue-500/10 p-6 overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-400/10 rounded-full blur-3xl -z-0" />
+                        <div className="relative z-10 flex items-center gap-5">
+                            <div className="flex-shrink-0">
+                                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                                    <span className="material-symbols-outlined text-2xl text-white">emoji_events</span>
                                 </div>
                             </div>
-                        </div>
-
-                        {/* Farcaster */}
-                        <div className="relative bg-white dark:bg-slate-800 rounded-2xl border border-purple-200/60 dark:border-purple-500/20 shadow-xl shadow-purple-500/10 p-6 overflow-hidden">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-400/10 rounded-full blur-3xl -z-0" />
-                            <div className="relative z-10 flex items-center gap-5">
-                                <div className="flex-shrink-0">
-                                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center shadow-lg shadow-purple-500/30">
-                                        <span className="material-symbols-outlined text-2xl text-white">cast</span>
-                                    </div>
+                            <div>
+                                <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700/50 text-blue-700 dark:text-blue-400 text-[10px] font-bold uppercase tracking-wider mb-2">
+                                    <span className="material-icons text-xs">workspace_premium</span>
+                                    Award
                                 </div>
-                                <div>
-                                    <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700/50 text-purple-700 dark:text-purple-400 text-[10px] font-bold uppercase tracking-wider mb-2">
-                                        <span className="material-icons text-xs">hub</span>
-                                        Social
-                                    </div>
-                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
-                                        On Farcaster
-                                    </h3>
-                                    <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                                        Available as a mini app on <span className="font-semibold text-slate-700 dark:text-slate-300">Farcaster</span>,
-                                        enabling decentralized social discovery and crypto due diligence in one place.
-                                    </p>
-                                </div>
+                                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
+                                    ETH Istanbul Award Winner
+                                </h3>
+                                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                                    Our whitepaper was recognized and awarded at <span className="font-semibold text-slate-700 dark:text-slate-300">ETH Istanbul</span>.
+                                </p>
                             </div>
                         </div>
                     </div>

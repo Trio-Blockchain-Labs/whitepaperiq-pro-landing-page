@@ -21,10 +21,12 @@ const trustLogos: LogoItem[] = [
     {
         node: <img src="/bybit-logo.png" alt="Bybit" className="h-9 w-auto rounded-lg object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />,
         title: "Bybit",
+        hideLabel: true,
     },
     {
         node: <img src="/website-chainalysis-115_orig.png" alt="Chainalysis" className="h-9 w-auto rounded-lg object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />,
         title: "Chainalysis",
+        hideLabel: true,
     },
     {
         node: <img src="/nansen-ai_BIG.D-c7d08421.png" alt="Nansen" className="h-9 w-9 rounded-lg object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />,

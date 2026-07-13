@@ -6,6 +6,8 @@ export interface LogoItem {
     alt?: string;
     title?: string;
     href?: string;
+    /** Set true when the logo image already contains the brand's wordmark, to skip the redundant text label. */
+    hideLabel?: boolean;
 }
 
 interface LogoLoopProps {
@@ -180,7 +182,7 @@ export default function LogoLoop({
                                 title={logo.title}
                             >
                                 {content}
-                                {logo.title && (
+                                {logo.title && !logo.hideLabel && (
                                     <span className="ml-2 font-bold text-lg font-display text-slate-700 dark:text-slate-300 whitespace-nowrap">
                                         {logo.title}
                                     </span>

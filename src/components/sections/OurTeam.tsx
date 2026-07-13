@@ -81,7 +81,7 @@ export default function OurTeam() {
                 }
             `}</style>
 
-            <div className="relative z-10">
+            <div className="relative z-10 min-w-0 w-full">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className="text-[#8c25f4] font-bold text-sm uppercase tracking-wider">Our Team</span>

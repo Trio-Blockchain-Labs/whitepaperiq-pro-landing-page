@@ -39,12 +39,12 @@ export const PRICING_GROUPS = [
     {
         id: "core",
         name: "Core Intelligence",
-        description: "General-purpose research packages for teams scaling their on-chain investigation workflow.",
+        description: "General-purpose packages for on-chain investigations.",
         tiers: [
             {
                 name: "Tier 1",
                 credits: "5,000 Credits",
-                description: "For small teams starting to scale their on-chain investigations.",
+                description: "For small teams scaling on-chain research.",
                 monthlyPrice: 599,
                 annualMonthlyPrice: 500,
                 annualTotal: 6000,
@@ -61,7 +61,7 @@ export const PRICING_GROUPS = [
             {
                 name: "Tier 2",
                 credits: "10,000 Credits",
-                description: "For growing research teams that need more throughput and seats.",
+                description: "For growing teams needing more throughput.",
                 monthlyPrice: 849,
                 annualMonthlyPrice: 700,
                 annualTotal: 8400,
@@ -85,7 +85,7 @@ export const PRICING_GROUPS = [
             {
                 name: "Tier 1",
                 credits: "5,000 Credits",
-                description: "For VASPs compliance workflows.",
+                description: "For VASPs starting compliance workflows.",
                 monthlyPrice: 799,
                 annualMonthlyPrice: 700,
                 annualTotal: 8400,
@@ -102,7 +102,7 @@ export const PRICING_GROUPS = [
             {
                 name: "Tier 2",
                 credits: "10,000 Credits",
-                description: "For high-volume exchanges needing dedicated compliance coverage.",
+                description: "For large exchanges & compliance teams.",
                 monthlyPrice: 1399,
                 annualMonthlyPrice: 1200,
                 annualTotal: 14400,

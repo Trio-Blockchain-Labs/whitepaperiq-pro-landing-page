@@ -15,7 +15,7 @@ export default function PricingSection() {
     return (
         <section id="pricing" className="py-24 bg-white dark:bg-slate-950 relative overflow-hidden min-h-screen flex flex-col justify-center">
             <div className="absolute inset-0 grid-bg pointer-events-none" />
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 min-w-0 w-full">
                 <div className="text-center mb-10">
                     <span className="text-[#8c25f4] font-bold text-sm uppercase tracking-wider">Pricing</span>
                     <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white mt-2">
@@ -99,14 +99,14 @@ export default function PricingSection() {
                     {PRICING_GROUPS.map((group) => (
                         <div
                             key={group.id}
-                            className="rounded-2xl border-2 border-slate-300 dark:border-slate-600 p-6"
+                            className="rounded-2xl border-2 border-slate-300 dark:border-slate-600 p-6 flex flex-col"
                         >
                             <div className="mb-6">
                                 <span className="text-xs font-bold uppercase tracking-wider text-[#8c25f4]">{group.name}</span>
-                                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">{group.description}</p>
+                                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 min-h-5">{group.description}</p>
                             </div>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 flex-1">
                                 {group.tiers.map((tier) => {
                                     const inheritedLine = tier.features.find((f) => f.startsWith("Everything in"));
                                     const restFeatures = tier.features.filter((f) => f !== inheritedLine);
@@ -132,7 +132,7 @@ export default function PricingSection() {
                                                         {tier.credits}
                                                     </span>
                                                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white mt-2">{tier.name}</h3>
-                                                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{tier.description}</p>
+                                                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 min-h-10">{tier.description}</p>
                                                 </div>
 
                                                 <div key={`${tier.name}-${billing}`} className="animate-in fade-in slide-in-from-bottom-1 duration-300">

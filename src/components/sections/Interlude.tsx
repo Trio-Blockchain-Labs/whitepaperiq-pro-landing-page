@@ -19,7 +19,7 @@ export default function Interlude() {
                 />
             </div>
 
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 pointer-events-none">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 pointer-events-none min-w-0 w-full">
                 <div className="inline-block bg-white/85 dark:bg-slate-950/85 rounded-2xl px-8 py-6 border border-slate-200/70 dark:border-slate-800/80 shadow-xl backdrop-blur-md pointer-events-auto">
                     <div className="inline-flex items-center gap-2 mb-4 text-[#8c25f4]">
                         <span className="h-px w-8 bg-[#8c25f4]/60" />

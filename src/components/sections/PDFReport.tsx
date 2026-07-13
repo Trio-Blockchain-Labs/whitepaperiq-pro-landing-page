@@ -363,7 +363,7 @@ export default function PDFReport() {
     return (
         <section id="pdf-report-section" className="py-24 bg-slate-50 dark:bg-slate-900 relative overflow-hidden min-h-screen flex flex-col justify-center">
             {/* Desktop / tablet — draggable split reveal */}
-            <div className="hidden lg:block px-4 sm:px-6 lg:px-8">
+            <div className="hidden lg:block px-4 sm:px-6 lg:px-8 min-w-0 w-full">
                 <div className="max-w-7xl mx-auto">
                     <DraggableSplitPanel
                         leftContent={<ExportDecisionContent />}
@@ -377,7 +377,7 @@ export default function PDFReport() {
             </div>
 
             {/* Mobile — stacked, no drag interaction */}
-            <div className="lg:hidden">
+            <div className="lg:hidden min-w-0 w-full">
                 <ExportDecisionContent />
                 <div className="border-t border-slate-200 dark:border-slate-800 mt-4">
                     <WalletSearchTool />

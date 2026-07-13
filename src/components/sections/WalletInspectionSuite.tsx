@@ -3,7 +3,7 @@ import TiltCard from "@/components/ui/TiltCard";
 export default function WalletInspectionSuite() {
     return (
         <section id="wallet-inspection" className="py-24 bg-slate-50 dark:bg-slate-950 min-h-screen flex flex-col justify-center">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-w-0 w-full">
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
