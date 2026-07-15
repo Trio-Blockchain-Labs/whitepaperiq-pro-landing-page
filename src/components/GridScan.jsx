@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { EffectComposer, RenderPass, EffectPass, BloomEffect, ChromaticAberrationEffect } from 'postprocessing';
 import * as THREE from 'three';
-import * as faceapi from 'face-api.js';
+// face-api.js is only ever needed when enableWebcam is on (nowhere in this app
+// right now). Its own module init does non-trivial synchronous setup work, so
+// it's dynamically imported inside the webcam-gated effect below instead of
+// eagerly here — importing GridScan should not pay that cost unconditionally.
 
 const vert = `
 varying vec2 vUv;
@@ -310,6 +313,7 @@ export const GridScan = ({
 
   const [modelsReady, setModelsReady] = useState(false);
   const [uiFaceActive, setUiFaceActive] = useState(false);
+  const faceapiRef = useRef(null);
 
   const lookTarget = useRef(new THREE.Vector2(0, 0));
   const tiltTarget = useRef(0);
@@ -420,9 +424,13 @@ export const GridScan = ({
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    // antialias: false — the fragment shader already does its own analytic
+    // (fwidth-based) edge AA on the grid/scan lines, so MSAA on the WebGL
+    // context is pure extra cost here, especially once post-processing takes
+    // over drawing (the composer renders to an off-screen target anyway).
+    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
     rendererRef.current = renderer;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1));
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.NoToneMapping;
@@ -473,28 +481,41 @@ export const GridScan = ({
     scene.add(quad);
 
     let composer = null;
-    if (enablePost) {
+    // Only spend a shader pass on effects that actually contribute something
+    // — an EffectPass still runs its full-screen fragment shader every frame
+    // even when its own knobs (intensity/offset) are zero.
+    const wantsBloom = bloomIntensity > 0;
+    const wantsChroma = chromaticAberration > 0;
+    if (enablePost && (wantsBloom || wantsChroma)) {
       composer = new EffectComposer(renderer);
       composerRef.current = composer;
       const renderPass = new RenderPass(scene, camera);
       composer.addPass(renderPass);
 
-      const bloom = new BloomEffect({
-        intensity: 1.0,
-        luminanceThreshold: bloomThreshold,
-        luminanceSmoothing: bloomSmoothing
-      });
-      bloom.blendMode.opacity.value = Math.max(0, bloomIntensity);
-      bloomRef.current = bloom;
+      const activeEffects = [];
 
-      const chroma = new ChromaticAberrationEffect({
-        offset: new THREE.Vector2(chromaticAberration, chromaticAberration),
-        radialModulation: true,
-        modulationOffset: 0.0
-      });
-      chromaRef.current = chroma;
+      if (wantsBloom) {
+        const bloom = new BloomEffect({
+          intensity: 1.0,
+          luminanceThreshold: bloomThreshold,
+          luminanceSmoothing: bloomSmoothing
+        });
+        bloom.blendMode.opacity.value = Math.max(0, bloomIntensity);
+        bloomRef.current = bloom;
+        activeEffects.push(bloom);
+      }
 
-      const effectPass = new EffectPass(camera, bloom, chroma);
+      if (wantsChroma) {
+        const chroma = new ChromaticAberrationEffect({
+          offset: new THREE.Vector2(chromaticAberration, chromaticAberration),
+          radialModulation: true,
+          modulationOffset: 0.0
+        });
+        chromaRef.current = chroma;
+        activeEffects.push(chroma);
+      }
+
+      const effectPass = new EffectPass(camera, ...activeEffects);
       effectPass.renderToScreen = true;
       composer.addPass(effectPass);
     }
@@ -507,7 +528,7 @@ export const GridScan = ({
     window.addEventListener('resize', onResize);
 
     let last = performance.now();
-    const tick = () => {
+    const renderFrame = () => {
       const now = performance.now();
       const dt = Math.max(0, Math.min(0.1, (now - last) / 1000));
       last = now;
@@ -550,12 +571,92 @@ export const GridScan = ({
       } else {
         renderer.render(scene, camera);
       }
+    };
+
+    // This shader + Bloom/ChromaticAberration postprocessing pipeline is
+    // expensive, so the render loop only runs while the section is actually
+    // on screen, the tab is focused, and the user hasn't asked for reduced
+    // motion — otherwise it was burning GPU/main-thread budget forever,
+    // starving every other animation on the page.
+    let running = false;
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    // Adaptive guard: on hardware that genuinely can't keep this shader +
+    // postprocessing pipeline near real-time, stop trying after a warm-up
+    // grace period instead of continuing to eat every frame's time budget.
+    let degraded = false;
+    let frameTimes = [];
+    let frameStart = 0;
+    let startedAt = 0;
+    const tick = () => {
+      if (!running) return;
+      const now = performance.now();
+      if (frameStart) {
+        frameTimes.push(now - frameStart);
+        if (frameTimes.length > 45) frameTimes.shift();
+      }
+      frameStart = now;
+      renderFrame();
+      if (!degraded && startedAt && now - startedAt > 2500 && frameTimes.length >= 10) {
+        const avg = frameTimes.reduce((a, b) => a + b, 0) / frameTimes.length;
+        if (avg > 55) {
+          degraded = true;
+          stopLoop();
+          return;
+        }
+      }
       rafRef.current = requestAnimationFrame(tick);
     };
-    rafRef.current = requestAnimationFrame(tick);
+    const startLoop = () => {
+      if (running || degraded || reducedMotionQuery.matches) return;
+      running = true;
+      last = performance.now();
+      // Only reset frameStart (so the off-screen gap isn't counted as one
+      // huge slow frame) — frameTimes/startedAt persist across pause/resume
+      // so brief visibility flapping can't keep wiping the sample buffer
+      // before the guard ever accumulates enough data to judge anything.
+      frameStart = 0;
+      if (!startedAt) startedAt = performance.now();
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    const stopLoop = () => {
+      running = false;
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+    };
+
+    renderFrame(); // paint one frame so the canvas isn't blank while paused
+
+    let isVisible = false;
+    const io = new IntersectionObserver(
+      entries => {
+        const entry = entries[0];
+        isVisible = !!entry && entry.isIntersecting && entry.intersectionRatio > 0;
+        if (isVisible && !document.hidden) startLoop();
+        else stopLoop();
+      },
+      { threshold: [0, 0.01, 0.1] }
+    );
+    io.observe(container);
+
+    const onVisibilityChange = () => {
+      if (document.hidden) stopLoop();
+      else if (isVisible) startLoop();
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
+
+    const onReducedMotionChange = () => {
+      if (reducedMotionQuery.matches) stopLoop();
+      else if (isVisible && !document.hidden) startLoop();
+    };
+    reducedMotionQuery.addEventListener('change', onReducedMotionChange);
 
     return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      stopLoop();
+      io.disconnect();
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      reducedMotionQuery.removeEventListener('change', onReducedMotionChange);
       window.removeEventListener('resize', onResize);
       material.dispose();
       quad.geometry.dispose();
@@ -663,9 +764,16 @@ export const GridScan = ({
   }, [enableGyro, uiFaceActive]);
 
   useEffect(() => {
+    // Skip the (multi-hundred-KB, CDN-hosted) face detection model download
+    // entirely unless webcam tracking is actually turned on — it was
+    // previously fetched unconditionally on every page load, unused.
+    if (!enableWebcam) return;
     let canceled = false;
     const load = async () => {
       try {
+        const faceapi = await import('face-api.js');
+        if (canceled) return;
+        faceapiRef.current = faceapi;
         await Promise.all([
           faceapi.nets.tinyFaceDetector.loadFromUri(modelsPath),
           faceapi.nets.faceLandmark68TinyNet.loadFromUri(modelsPath)
@@ -679,7 +787,7 @@ export const GridScan = ({
     return () => {
       canceled = true;
     };
-  }, [modelsPath]);
+  }, [enableWebcam, modelsPath]);
 
   useEffect(() => {
     let stop = false;
@@ -689,6 +797,8 @@ export const GridScan = ({
     const start = async () => {
       if (!enableWebcam || !modelsReady) return;
       if (!video) return;
+      const faceapi = faceapiRef.current;
+      if (!faceapi) return;
 
       try {
         const stream = await navigator.mediaDevices.getUserMedia({

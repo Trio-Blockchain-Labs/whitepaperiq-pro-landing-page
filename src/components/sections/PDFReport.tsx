@@ -128,7 +128,7 @@ function ExportDecisionContent() {
                             <span className="gradient-text">Decision.</span>
                         </h2>
                         <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
-                            Transform complex on-chain and off-chain data into structured, professional reports.
+                            Transform complex on-chain and off-chain data into structured, decision-ready intelligence reports.
                             Our PDF exports are the gold standard for VC and Exchange due diligence.
                         </p>
 

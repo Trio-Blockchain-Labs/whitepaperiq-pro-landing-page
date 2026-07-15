@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
@@ -5,7 +6,6 @@ import TrustLogos from "@/components/sections/TrustLogos";
 import RiskDetection from "@/components/sections/RiskDetection";
 import WalletResearch from "@/components/sections/WalletResearch";
 import LiveFeatures from "@/components/sections/LiveFeatures";
-import Interlude from "@/components/sections/Interlude";
 import DueDiligenceSuite from "@/components/sections/DueDiligenceSuite";
 import WalletInspectionSuite from "@/components/sections/WalletInspectionSuite";
 import Criterias from "@/components/sections/Criterias";
@@ -13,6 +13,11 @@ import PDFReport from "@/components/sections/PDFReport";
 import PricingSection from "@/components/sections/PricingSection";
 import AboutUs from "@/components/sections/AboutUs";
 import OurTeam from "@/components/sections/OurTeam";
+
+// Interlude pulls in three.js postprocessing + face-api.js (a multi-hundred-KB
+// ML bundle) purely for its background shader — deferred so that weight isn't
+// on the critical path for the initial (above-the-fold) render.
+const Interlude = lazy(() => import("@/components/sections/Interlude"));
 
 function App() {
   return (
@@ -23,7 +28,9 @@ function App() {
         <TrustLogos />
         <RiskDetection />
         <WalletResearch />
-        <Interlude />
+        <Suspense fallback={<div className="min-h-screen bg-white dark:bg-slate-950" />}>
+          <Interlude />
+        </Suspense>
         <DueDiligenceSuite />
         <WalletInspectionSuite />
         <Criterias />

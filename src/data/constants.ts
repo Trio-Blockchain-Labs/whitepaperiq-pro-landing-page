@@ -52,7 +52,7 @@ export const PRICING_GROUPS = [
                 cta: "Start Free Trial",
                 features: [
                     "5,000 research credits / mo",
-                    "Live wallet & token risk scoring",
+                    "Live Token & Wallet Intelligence",
                     "Counterparty & fund-flow mapping",
                     "Downloadable PDF reports",
                     "Email support",

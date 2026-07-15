@@ -98,11 +98,11 @@ export default function WalletResearch() {
     const fadeUp = (delay: number) =>
         animate
             ? {
-                  initial: { opacity: 0, y: 20 },
-                  whileInView: { opacity: 1, y: 0 },
-                  viewport: { once: true, amount: 0.5 },
-                  transition: { duration: 0.4, delay, ease: "easeOut" as const },
-              }
+                initial: { opacity: 0, y: 20 },
+                whileInView: { opacity: 1, y: 0 },
+                viewport: { once: true, amount: 0.5 },
+                transition: { duration: 0.4, delay, ease: "easeOut" as const },
+            }
             : {};
 
     return (
@@ -115,7 +115,7 @@ export default function WalletResearch() {
                             <span className="px-2.5 py-0.5 rounded-full bg-[#7C3AED] text-white text-[10px] font-extrabold uppercase tracking-wider">
                                 New
                             </span>
-                            <span className="text-[#7C3AED] font-bold text-sm">Wallet Research</span>
+                            <span className="text-[#7C3AED] font-bold text-sm">Wallet Intelligence</span>
                         </motion.div>
 
                         <h2 className="text-4xl lg:text-5xl font-extrabold leading-tight mb-8">
@@ -160,9 +160,8 @@ export default function WalletResearch() {
                         {/* Faint, very slow radial drift behind the card for depth */}
                         <div
                             aria-hidden="true"
-                            className={`absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.18),transparent_65%)] blur-3xl -z-10 ${
-                                animate ? "map-drift" : ""
-                            }`}
+                            className={`absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.18),transparent_65%)] blur-3xl -z-10 ${animate ? "map-drift" : ""
+                                }`}
                         />
 
                         <div

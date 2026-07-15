@@ -92,8 +92,15 @@ export default function LogoLoop({
 
     // CSS animation keyframes will be handled inline
     const animationName = direction === "left" ? "scroll-left" : "scroll-right";
+    // Longhand-only: mixing the `animation` shorthand with the longhand
+    // `animationPlayState` in the same style object makes React warn (and
+    // re-touch the whole shorthand on every hover-state re-render instead of
+    // patching just the one changed sub-property).
     const animationStyle: CSSProperties = {
-        animation: `${animationName} ${isHovered && hoverSpeed !== undefined ? hoverAnimationDuration : animationDuration} linear infinite`,
+        animationName,
+        animationDuration: isHovered && hoverSpeed !== undefined ? hoverAnimationDuration : animationDuration,
+        animationTimingFunction: "linear",
+        animationIterationCount: "infinite",
         animationPlayState: isHovered && hoverSpeed === 0 ? "paused" : "running",
     };
 

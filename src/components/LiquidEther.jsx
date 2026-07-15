@@ -132,6 +132,11 @@ export default function LiquidEther({
         this.takeoverFrom = new THREE.Vector2();
         this.takeoverTo = new THREE.Vector2();
         this.onInteract = null;
+        // Cached once per rendered frame (see update()) instead of being
+        // re-queried on every raw mousemove/touchmove event — getBoundingClientRect()
+        // forces a synchronous layout, and mousemove can fire far more often
+        // than the render loop's fps, so querying it per-event was pure waste.
+        this.rect = null;
         this._onMouseMove = this.onDocumentMouseMove.bind(this);
         this._onTouchStart = this.onDocumentTouchStart.bind(this);
         this._onTouchMove = this.onDocumentTouchMove.bind(this);
@@ -140,6 +145,7 @@ export default function LiquidEther({
       }
       init(container) {
         this.container = container;
+        this.rect = container.getBoundingClientRect();
         this.docTarget = container.ownerDocument || null;
         const defaultView =
           (this.docTarget && this.docTarget.defaultView) || (typeof window !== 'undefined' ? window : null);
@@ -169,7 +175,7 @@ export default function LiquidEther({
       }
       isPointInside(clientX, clientY) {
         if (!this.container) return false;
-        const rect = this.container.getBoundingClientRect();
+        const rect = this.rect || this.container.getBoundingClientRect();
         if (rect.width === 0 || rect.height === 0) return false;
         return clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom;
       }
@@ -180,7 +186,7 @@ export default function LiquidEther({
       setCoords(x, y) {
         if (!this.container) return;
         if (this.timer) window.clearTimeout(this.timer);
-        const rect = this.container.getBoundingClientRect();
+        const rect = this.rect || this.container.getBoundingClientRect();
         if (rect.width === 0 || rect.height === 0) return;
         const nx = (x - rect.left) / rect.width;
         const ny = (y - rect.top) / rect.height;
@@ -199,7 +205,7 @@ export default function LiquidEther({
         if (this.onInteract) this.onInteract();
         if (this.isAutoActive && !this.hasUserControl && !this.takeoverActive) {
           if (!this.container) return;
-          const rect = this.container.getBoundingClientRect();
+          const rect = this.rect || this.container.getBoundingClientRect();
           if (rect.width === 0 || rect.height === 0) return;
           const nx = (event.clientX - rect.left) / rect.width;
           const ny = (event.clientY - rect.top) / rect.height;
@@ -236,6 +242,7 @@ export default function LiquidEther({
         this.isHoverInside = false;
       }
       update() {
+        if (this.container) this.rect = this.container.getBoundingClientRect();
         if (this.takeoverActive) {
           const t = (performance.now() - this.takeoverStartTime) / (this.takeoverDuration * 1000);
           if (t >= 1) {
@@ -954,6 +961,16 @@ export default function LiquidEther({
         };
         document.addEventListener('visibilitychange', this._onVisibility);
         this.running = false;
+        // Adaptive guard: a decorative background sim shouldn't be allowed to
+        // keep dragging the whole page's frame rate down forever on hardware
+        // that genuinely can't keep up with it. After a warm-up grace period,
+        // if the rolling average frame time says we're sustained well under
+        // ~18fps, stop animating (freezing on the last rendered frame) rather
+        // than continuing to compete for every frame's time budget.
+        this.frameTimes = [];
+        this.frameStart = 0;
+        this.startedAt = 0;
+        this.degraded = false;
       }
       init() {
         this.props.$wrapper.prepend(Common.renderer.domElement);
@@ -967,16 +984,56 @@ export default function LiquidEther({
         if (this.autoDriver) this.autoDriver.update();
         Mouse.update();
         Common.update();
+        // The solver's own dt was previously a fixed 0.014s step taken once
+        // per animation frame, with no link to real elapsed time. That's fine
+        // at a steady 60fps, but when something else on the page steals frame
+        // budget and fps drops, the sim doesn't skip visible frames — it just
+        // advances less simulated time each frame, so the fluid (and its
+        // response to the mouse) visibly slips into slow motion. Tying dt to
+        // the real per-frame delta (clamped to a safe band around the tuned
+        // base value, to avoid destabilizing the fixed-iteration solver on a
+        // severe stall) keeps its apparent speed consistent with real time.
+        const sim = this.output && this.output.simulation;
+        if (sim) {
+          const measured = Common.delta || dt;
+          sim.options.dt = Math.max(dt * 0.5, Math.min(dt * 2.5, measured));
+        }
         this.output.update();
       }
       loop() {
         if (!this.running) return; // safety
+        const now = performance.now();
+        if (this.frameStart) {
+          this.frameTimes.push(now - this.frameStart);
+          if (this.frameTimes.length > 45) this.frameTimes.shift();
+        }
+        this.frameStart = now;
         this.render();
+        if (
+          !this.degraded &&
+          this.startedAt &&
+          now - this.startedAt > 2500 &&
+          this.frameTimes.length >= 10
+        ) {
+          const avg = this.frameTimes.reduce((a, b) => a + b, 0) / this.frameTimes.length;
+          if (avg > 55) {
+            this.degraded = true;
+            this.pause();
+            return;
+          }
+        }
         rafRef.current = requestAnimationFrame(this._loop);
       }
       start() {
-        if (this.running) return;
+        if (this.running || this.degraded) return;
         this.running = true;
+        // Only reset frameStart (so the paused/off-screen gap isn't counted
+        // as one huge slow frame) — frameTimes and startedAt persist across
+        // pause/resume so brief visibility flapping (e.g. layout shifting
+        // during initial font/image load) can't keep wiping the sample
+        // buffer before the guard ever gets enough data to judge anything.
+        this.frameStart = 0;
+        if (!this.startedAt) this.startedAt = performance.now();
         this._loop();
       }
       pause() {

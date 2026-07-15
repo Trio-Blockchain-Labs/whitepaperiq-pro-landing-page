@@ -190,8 +190,8 @@ export default function HeroSection() {
                 <img src="/logo.png" alt="Whitepaper IQ" className="mx-auto mb-4 max-w-md md:max-w-lg w-full h-auto" />
 
                 {/* Tagline */}
-                <p className="max-w-xl mx-auto text-lg md:text-xl text-slate-500 dark:text-slate-400">
-                    AI-Powered Crypto Research &amp; Analysis
+                <p className="max-w-xl mx-auto text-xl md:text-2xl text-slate-500 dark:text-slate-400">
+                    The Intelligence Layer for Web3
                 </p>
 
                 {/* Segmented toggle: Project / Wallet */}
@@ -382,21 +382,19 @@ export default function HeroSection() {
                                                 </h3>
                                                 <div className="flex gap-2">
                                                     <button
-                                                        className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
-                                                            activeTab === "summary"
+                                                        className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${activeTab === "summary"
                                                                 ? "bg-[#8c25f4]/10 text-[#8c25f4]"
                                                                 : "bg-slate-100 dark:bg-slate-800 text-slate-500"
-                                                        }`}
+                                                            }`}
                                                         onClick={() => setActiveTab("summary")}
                                                     >
                                                         Summary
                                                     </button>
                                                     <button
-                                                        className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
-                                                            activeTab === "financial"
+                                                        className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${activeTab === "financial"
                                                                 ? "bg-[#8c25f4]/10 text-[#8c25f4]"
                                                                 : "bg-slate-100 dark:bg-slate-800 text-slate-500"
-                                                        }`}
+                                                            }`}
                                                         onClick={() => setActiveTab("financial")}
                                                     >
                                                         Financial

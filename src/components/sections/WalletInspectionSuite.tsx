@@ -26,7 +26,7 @@ export default function WalletInspectionSuite() {
                                 </div>
                                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">AML Risk Score</h3>
                                 <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
-                                    Every wallet gets a 0–100 AML score, flagging indirect ties to financial crime, theft or gambling networks.
+                                    Each wallet analysis includes a 0–100 AML exposure score, flagging indirect ties to financial crime, theft or gambling networks.
                                 </p>
                             </div>
                             <div className="flex items-center justify-between mt-2">
