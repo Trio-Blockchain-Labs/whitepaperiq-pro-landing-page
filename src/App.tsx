@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import HeroSection from "@/components/sections/HeroSection";
 import TrustLogos from "@/components/sections/TrustLogos";
 import RiskDetection from "@/components/sections/RiskDetection";
@@ -41,6 +42,7 @@ function App() {
         <OurTeam />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

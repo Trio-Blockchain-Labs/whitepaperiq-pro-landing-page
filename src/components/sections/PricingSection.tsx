@@ -87,6 +87,8 @@ export default function PricingSection() {
                                 ? `Billed ${formatUsd(PRICING_PRO_PLAN.annualTotal)} / year`
                                 : "No commitment — cancel anytime"}
                         </p>
+                        {/* Left as a plain placeholder button on purpose — no mailto here.
+                            A payment method integration is coming later for this plan. */}
                         <Button className="px-8 py-3 rounded-lg font-semibold h-auto bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200">
                             {PRICING_PRO_PLAN.cta}
                         </Button>
@@ -149,26 +151,21 @@ export default function PricingSection() {
                                                     </p>
                                                 </div>
 
-                                                {tier.cta === "Contact Sales" ? (
-                                                    <Button
-                                                        className={`w-full py-3 rounded-lg font-semibold h-auto ${tier.popular
-                                                                ? "bg-gradient-to-r from-violet-500 to-pink-500 text-white shadow-lg shadow-[#8c25f4]/25 hover:shadow-[#8c25f4]/40"
-                                                                : "bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200"
-                                                            }`}
-                                                        asChild
-                                                    >
-                                                        <a href="mailto:contact@whitepaperiq.com">{tier.cta}</a>
-                                                    </Button>
-                                                ) : (
-                                                    <Button
-                                                        className={`w-full py-3 rounded-lg font-semibold h-auto ${tier.popular
-                                                                ? "bg-gradient-to-r from-violet-500 to-pink-500 text-white shadow-lg shadow-[#8c25f4]/25 hover:shadow-[#8c25f4]/40"
-                                                                : "bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200"
-                                                            }`}
+                                                <Button
+                                                    className={`w-full py-3 rounded-lg font-semibold h-auto ${tier.popular
+                                                            ? "bg-gradient-to-r from-violet-500 to-pink-500 text-white shadow-lg shadow-[#8c25f4]/25 hover:shadow-[#8c25f4]/40"
+                                                            : "bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200"
+                                                        }`}
+                                                    asChild
+                                                >
+                                                    <a
+                                                        href={`mailto:contact@trioblockchainlabs.com?subject=${encodeURIComponent(
+                                                            `Inquiry about ${group.name} ${tier.name}`
+                                                        )}`}
                                                     >
                                                         {tier.cta}
-                                                    </Button>
-                                                )}
+                                                    </a>
+                                                </Button>
                                             </div>
 
                                             {/* Divider + feature checklist */}

@@ -49,7 +49,7 @@ export const PRICING_GROUPS = [
                 annualMonthlyPrice: 500,
                 annualTotal: 6000,
                 popular: false,
-                cta: "Start Free Trial",
+                cta: "Contact Sales",
                 features: [
                     "5,000 research credits / mo",
                     "Live Token & Wallet Intelligence",
@@ -66,7 +66,7 @@ export const PRICING_GROUPS = [
                 annualMonthlyPrice: 700,
                 annualTotal: 8400,
                 popular: true,
-                cta: "Start Free Trial",
+                cta: "Contact Sales",
                 features: [
                     "10,000 research credits / mo",
                     "Everything in Tier 1",
