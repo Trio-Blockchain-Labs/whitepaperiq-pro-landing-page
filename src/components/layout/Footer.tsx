@@ -18,10 +18,10 @@ export default function Footer() {
                             For Contact:
                         </p>
                         <a
-                            href="mailto:contact@whitepaperiq.com"
+                            href="mailto:contact@trioblockchainlabs.com"
                             className="inline-block text-sm text-slate-500 dark:text-slate-400 hover:text-[#8c25f4] transition-colors"
                         >
-                            contact@whitepaperiq.com
+                            contact@trioblockchainlabs.com
                         </a>
                     </div>
 

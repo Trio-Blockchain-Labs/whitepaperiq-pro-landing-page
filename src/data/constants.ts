@@ -178,7 +178,7 @@ export const FOOTER_LINKS = {
     company: [
         { label: "About", href: "#about" },
         { label: "Team", href: "#team" },
-        { label: "Contact", href: "mailto:contact@whitepaperiq.com" },
+        { label: "Contact", href: "mailto:contact@trioblockchainlabs.com" },
     ],
     legal: [
         { label: "Privacy Policy", href: "/whitepaper-iq-privacy-policy.pdf", target: "_blank" },

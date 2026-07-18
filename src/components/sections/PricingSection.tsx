@@ -5,12 +5,26 @@ import { PRICING_PRO_PLAN, PRICING_GROUPS } from "@/data/constants";
 
 type Billing = "monthly" | "annual";
 
+const SALES_EMAIL = "contact@trioblockchainlabs.com";
+
 function formatUsd(value: number) {
     return `$${value.toLocaleString("en-US")}`;
 }
 
 export default function PricingSection() {
     const [billing, setBilling] = useState<Billing>("monthly");
+    const [showCopiedNotice, setShowCopiedNotice] = useState(false);
+
+    // Clicking still lets the mailto: href attempt to open the visitor's mail
+    // client normally — this only adds a fallback. Machines with no mail
+    // client registered fail that navigation completely silently (no error,
+    // no dialog), so without this a visitor in that situation would have no
+    // way to actually reach out.
+    const handleContactClick = () => {
+        navigator.clipboard?.writeText(SALES_EMAIL).catch(() => {});
+        setShowCopiedNotice(true);
+        window.setTimeout(() => setShowCopiedNotice(false), 5000);
+    };
 
     return (
         <section id="pricing" className="py-24 bg-white dark:bg-slate-950 relative overflow-hidden min-h-screen flex flex-col justify-center">
@@ -159,9 +173,10 @@ export default function PricingSection() {
                                                     asChild
                                                 >
                                                     <a
-                                                        href={`mailto:contact@trioblockchainlabs.com?subject=${encodeURIComponent(
+                                                        href={`mailto:${SALES_EMAIL}?subject=${encodeURIComponent(
                                                             `Inquiry about ${group.name} ${tier.name}`
                                                         )}`}
+                                                        onClick={handleContactClick}
                                                     >
                                                         {tier.cta}
                                                     </a>
@@ -191,6 +206,21 @@ export default function PricingSection() {
                         </div>
                     ))}
                 </div>
+            </div>
+
+            {/* Fallback for visitors whose browser/OS has no mail client registered —
+                a mailto: link fails completely silently in that case, so this makes
+                sure they still walk away with the address instead of nothing. */}
+            <div
+                role="status"
+                aria-live="polite"
+                className={`fixed bottom-24 right-5 z-50 w-80 max-w-[calc(100vw-2.5rem)] rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-2xl px-4 py-3 text-sm transition-all duration-300 ${showCopiedNotice ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
+                    }`}
+            >
+                <p className="font-semibold mb-0.5">Email copied to clipboard</p>
+                <p className="text-slate-300 dark:text-slate-600">
+                    <span className="break-all">{SALES_EMAIL}</span> — paste it into your email app if nothing opened.
+                </p>
             </div>
         </section>
     );
